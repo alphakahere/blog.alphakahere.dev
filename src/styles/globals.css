@@ -26,3 +26,19 @@
 		rgb(178, 73, 248) 100%
 	);
 }
+.banner {
+	background-image: url("../assets/banner.png");
+	position: relative;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.banner-overlay{
+	content: "";
+	display: block;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(178, 73, 248, .5)%;
+	top: 0;
+	left: 0;
+}

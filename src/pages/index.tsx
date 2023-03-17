@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Poppins } from "next/font/google";
 import Header from "@/components/Header";
+import Image from "next/image";
 
 const poppins = Poppins({ subsets: ["devanagari"], weight: ["300", "400", "500"] });
 
@@ -13,11 +14,44 @@ export default function Home() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<main
-				className={`${poppins.className} snap-y snap-mandatory overflow-y-scroll overflow-x-hidden`}
-			>
+			<div className={`${poppins.className}`}>
 				<Header />
-			</main>
+				<main className="bg-gray-50 dark:bg-dark min-h-screen text-white">
+					<div className="app-container">
+						<div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+							{[...Array(4)].map((item, i) => (
+								<div
+									className="border border-dark3  shadow-lg bg-dark2 rounded"
+									key={i}
+								>
+									<div className="w-full p-3">
+										<Image
+											className="rounded-lg w-full h-60"
+											src="https://picsum.photos/300"
+											alt="project"
+											width={200}
+											height={200}
+										/>
+									</div>
+									<div className="flex justify-between items-center mb-3 pt-3 px-3">
+										<div className="flex flex-col justify-center">
+											<h5 className="text-sm font-semibold white">
+												Web App
+											</h5>
+											<h5 className="text-base font-semibold tracking-wide leading-6">
+												Travel Mobile
+											</h5>
+										</div>
+										<button className="text-sm font-semibold white underline">
+											Voir plus
+										</button>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</main>
+			</div>
 		</>
 	);
 }

@@ -5,7 +5,7 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: "https",
-				hostname: "i.pravatar.cc",
+				hostname: "picsum.photos",
 				pathname: "/300/**",
 			},
 		],

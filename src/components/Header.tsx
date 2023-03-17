@@ -11,7 +11,7 @@ const Header = () => {
 	const { theme } = useTheme();
 	return (
 		<header className="text-white">
-			<div className="banner pt-4 h-[75vh] md:h-[70vh] lg:h-[60vh]">
+			<div className="banner pt-4 h-[80vh] sm:h-[70vh] lg:h-[60vh]">
 				<div className="banner-overlay">
 					<div className="app-container">
 						<nav className="flex items-center justify-between mb-16">
@@ -30,7 +30,7 @@ const Header = () => {
 						</nav>
 						<div className="flex flex-col items-center space-y-10 lg:flex-row-reverse">
 							<div className="lg:w-1/3 flex justify-center">
-								<div className="w-48 h-48  bg-gradient-to-tr from-sky-400 via-fuchsia-500 to-purple-500 rounded-full">
+								<div className="w-48 h-48  bg-gradient-to-tr from-sky-300 via-fuchsia-500 to-purple-500 rounded-full hover:from-pink-400 hover:via-fuchsia-600 hover:to-purple-500 transition-all ease-linear duration-500">
 									<Image
 										src={Avatar}
 										alt="avatar"
@@ -73,7 +73,7 @@ const Header = () => {
 												<a
 													href={item.url}
 													target="_blank"
-													className="w-9 h-9 bg-fuchsia-600 rounded-full flex items-center justify-center text-lg hover:bg-gradient-to-tr from-pink-400 via-fuchsia-500 to-purple-500 transition-all ease-in duration-300"
+													className="w-9 h-9 bg-gradient rounded-full flex items-center justify-center text-lg hover:bg-gradient-to-tr from-pink-400 via-fuchsia-500 to-purple-500 transition-all ease-in duration-300"
 												>
 													<item.icon />
 												</a>

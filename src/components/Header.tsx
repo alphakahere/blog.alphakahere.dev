@@ -94,4 +94,28 @@ const Header = () => {
 	);
 };
 
+export const SmallHeader = () => {
+	const { theme } = useTheme();
+	return (
+		<header className="text-white bg-gradient fixed top-0 left-0 w-full">
+			<div className="app-container">
+				<nav className="flex items-center justify-between py-1">
+					<div>
+						<Link
+							href="/"
+							className="text-white text-3xl leading-6"
+							data-theme={theme}
+						>
+							alphakahere.blog
+						</Link>
+					</div>
+					<div>
+						<ToggleModeButton />
+					</div>
+				</nav>
+			</div>
+		</header>
+	);
+};
+
 export default Header;

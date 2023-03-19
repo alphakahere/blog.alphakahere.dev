@@ -4,7 +4,6 @@ import Link from "next/link";
 import React from "react";
 import ToggleModeButton from "./ToggleModeButton";
 import Avatar from "../assets/avatar.png";
-import { SocialIcon } from "react-social-icons";
 import { data } from "../../data";
 
 const Header = () => {

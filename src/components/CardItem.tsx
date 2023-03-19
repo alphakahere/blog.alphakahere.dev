@@ -6,7 +6,7 @@ import { FiClock } from "react-icons/fi";
 const CardItem = ({ i }: { i: number }) => {
 	return (
 		<Link
-			href={`/articles/article-title`}
+			href={`/article-title`}
 			className="rounded-lg p-1px  hover:scale-105 transition-all ease-out duration-300 text-dark3 dark:text-white"
 		>
 			<article className="border-2 bg-slate border-slate dark:border-dark3 dark:bg-dark4 rounded-lg p-3 ">

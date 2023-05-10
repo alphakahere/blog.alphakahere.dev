@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Poppins } from "next/font/google";
 import Header from "@/components/Header";
-import ListCard from "@/components/ListCard";
+import ListPost from "@/components/ListPost";
 import Footer from "@/components/Footer";
 
 const poppins = Poppins({ subsets: ["devanagari"], weight: ["300", "400", "500"] });
@@ -19,7 +19,7 @@ export default function Home() {
 				<Header />
 				<main className="bg-gray-50 dark:bg-dark min-h-screen  py-14">
 					<div className="app-container">
-						<ListCard />
+						<ListPost />
 					</div>
 				</main>
 				<Footer />

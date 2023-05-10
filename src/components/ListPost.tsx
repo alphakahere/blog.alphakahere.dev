@@ -1,14 +1,14 @@
 import React from "react";
-import CardItem from "./CardItem";
+import PostItem from "./PostItem";
 
-const ListCard = () => {
+const ListPost = () => {
 	return (
 		<div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
 			{[...Array(12)].map((item, i) => (
-				<CardItem i={i} key={i} />
+				<PostItem i={i} key={i} />
 			))}
 		</div>
 	);
 };
 
-export default ListCard;
+export default ListPost;

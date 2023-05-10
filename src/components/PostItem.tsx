@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiClock } from "react-icons/fi";
 
-const CardItem = ({ i }: { i: number }) => {
+const PostItem = ({ i }: { i: number }) => {
 	return (
 		<Link
 			href={`/article-title`}
@@ -41,4 +41,4 @@ const CardItem = ({ i }: { i: number }) => {
 	);
 };
 
-export default CardItem;
+export default PostItem;

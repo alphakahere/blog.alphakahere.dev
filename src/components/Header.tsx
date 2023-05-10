@@ -10,8 +10,8 @@ const Header = () => {
 	const { theme } = useTheme();
 	return (
 		<header className="text-white">
-			<div className="banner pt-4 h-[80vh] sm:h-[70vh] lg:h-[60vh]">
-				<div className="banner-overlay">
+			<div className="banner h-[80vh] sm:h-[70vh] lg:h-[60vh]">
+				<div className="banner-overlay pt-4">
 					<div className="app-container">
 						<nav className="flex items-center justify-between mb-16">
 							<div>

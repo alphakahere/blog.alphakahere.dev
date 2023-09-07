@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import Header from "@/components/Header";
 import ListPost from "@/components/ListPost";
 import Footer from "@/components/Footer";
+import Layout from "@/components/Layout";
 
 const poppins = Poppins({ subsets: ["devanagari"], weight: ["300", "400", "500"] });
 
@@ -15,15 +16,17 @@ export default function Home() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className={`${poppins.className}`}>
-				<Header />
-				<main className="bg-gray-50 dark:bg-dark min-h-screen  py-14">
-					<div className="app-container">
-						<ListPost />
-					</div>
-				</main>
-				<Footer />
-			</div>
+			<Layout>
+				<div className={`${poppins.className}`}>
+					<Header />
+					<main className="bg-gray-50 dark:bg-dark min-h-screen  py-14">
+						<div className="app-container">
+							<ListPost />
+						</div>
+					</main>
+					<Footer />
+				</div>
+			</Layout>
 		</>
 	);
 }

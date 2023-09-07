@@ -10,7 +10,7 @@ const Header = () => {
 	const { theme } = useTheme();
 	return (
 		<header className="text-white">
-			<div className="banner h-[80vh] sm:h-[70vh] lg:h-[60vh]">
+			<div className="banner h-[80vh] lg:h-[65vh] 2xl:h-[60vh]">
 				<div className="banner-overlay pt-4">
 					<div className="app-container">
 						<nav className="flex items-center justify-between mb-16">
@@ -29,13 +29,13 @@ const Header = () => {
 						</nav>
 						<div className="flex flex-col items-center space-y-10 lg:flex-row-reverse">
 							<div className="lg:w-1/3 flex justify-center">
-								<div className="w-48 h-48  bg-gradient-to-tr from-sky-300 via-fuchsia-500 to-purple-500 rounded-full hover:from-pink-400 hover:via-fuchsia-600 hover:to-purple-500 transition-all ease-linear duration-500">
+								<div className="w-36 h-36 lg:w-48 lg:h-48 bg-gradient-to-tr from-sky-300 via-fuchsia-500 to-purple-500 rounded-full hover:from-pink-400 hover:via-fuchsia-600 hover:to-purple-500 transition-all ease-linear duration-500">
 									<Image
 										src={Avatar}
 										alt="avatar"
 										width={100}
 										height={100}
-										className="w-48 h-48 rounded-full"
+										className="w-36 h-36 lg:w-48 lg:h-48 rounded-full"
 									/>
 								</div>
 							</div>
@@ -51,7 +51,7 @@ const Header = () => {
 											ReactJS, Laravel
 										</strong>{" "}
 									</h1>
-									<p className="text-gray-50">
+									<p className="text-gray-100">
 										{`Passionné de technologie, de
 										connaissance , d'éducation et de
 										partage. Lorem, ipsum dolor sit amet

@@ -3,18 +3,11 @@ import { SmallHeader } from "@/components/Header";
 import Image from "next/image";
 import React from "react";
 import Avatar from "../../assets/avatar.png";
-
-// export async function generateStaticParams() {
-// 	return [
-// 		{
-// 			slug: "stream",
-// 		},
-// 	];
-// }
+import Layout from "@/components/Layout";
 
 const page = () => {
 	return (
-		<div>
+		<Layout>
 			<SmallHeader />
 			<div className="app-container mt-20">
 				<div className="text-black dark:text-white">
@@ -145,7 +138,7 @@ const page = () => {
 				</div>
 			</div>
 			<Footer />
-		</div>
+		</Layout>
 	);
 };
 

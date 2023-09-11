@@ -1,11 +1,12 @@
 import React from "react";
 import PostItem from "./PostItem";
+import { Post } from "@/lib/type";
 
-const ListPost = () => {
+const ListPost = ({ posts }: { posts: Post[] }) => {
 	return (
 		<div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-			{[...Array(12)].map((item, i) => (
-				<PostItem i={i} key={i} />
+			{posts.map((item, i) => (
+				<PostItem i={i} key={i} post={item} />
 			))}
 		</div>
 	);

@@ -4,10 +4,13 @@ import Header from "@/components/Header";
 import ListPost from "@/components/ListPost";
 import Footer from "@/components/Footer";
 import Layout from "@/components/Layout";
+import { client } from "../lib/client";
+import { Post } from "@/lib/type";
 
 const poppins = Preahvihear({ subsets: ["latin"], weight: ["400"] });
 
-export default function Home() {
+export default function Home({ posts }: { posts: Post[] }) {
+	console.log({ posts });
 	return (
 		<>
 			<Head>
@@ -24,7 +27,7 @@ export default function Home() {
 							<h1 className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 text-3xl font-bold">
 								Tutoriels et articles
 							</h1>
-							<ListPost />
+							<ListPost posts={posts} />
 						</div>
 					</main>
 					<Footer />
@@ -33,3 +36,12 @@ export default function Home() {
 		</>
 	);
 }
+
+export const getServerSideProps = async () => {
+	const query = '*[_type == "post"]';
+	const posts = await client.fetch(query);
+
+	return {
+		props: { posts },
+	};
+};

@@ -5,9 +5,10 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				dark: "#09010F",
+				// dark: "#09010F",
 				// dark: "#121212",
 				// dark: "#070616",
+				dark: "#101112",
 			},
 			padding: {
 				"1px": "1px",

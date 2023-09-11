@@ -14,11 +14,7 @@
     "@sanity/desk-tool"
   ],
   "env": {
-    "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
-    }
+    "development": {}
   },
   "parts": [
     {

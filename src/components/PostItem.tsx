@@ -2,18 +2,22 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FiClock } from "react-icons/fi";
+import { Post } from "@/lib/type";
+import { urlFor } from "../lib/client";
 
-const PostItem = ({ i }: { i: number }) => {
+const PostItem = ({ post, i }: { post: Post; i: number }) => {
+	const { title, mainImage, Except, slug } = post;
 	return (
-		<Link href={`/article-title`} className="rounded-lg p-1px text-dark dark:text-white">
+		<Link href={`/${slug.current}`} className="rounded-lg p-1px text-dark dark:text-white">
 			<article className="border bg-slate border-slate dark:border-gray-700 dark:bg-dark4 rounded-lg">
 				<div className="w-full mb-4">
 					<Image
-						className="rounded-t-lg w-full h-60"
-						src={`https://picsum.photos/30${i}`}
-						alt="project"
+						className="rounded-t-lg w-full h-60 object-cover"
+						src={urlFor(mainImage).url()}
+						alt={title}
 						width={200}
 						height={200}
+						loading="lazy"
 					/>
 				</div>
 				<div className="p-3">
@@ -29,14 +33,9 @@ const PostItem = ({ i }: { i: number }) => {
 					</div>
 					<div>
 						<h3 className="text-lg font-medium leading-8 text-opacity-80 transition-all ease-linear duration-300 hover:text-opacity-100">
-							Génerique et utilités types en typescript
+							{title}
 						</h3>
-						<p>
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-							Optio aliquid vero aspernatur nisi blanditiis, doloremque
-							facere accusantium vitae voluptate sequi et qui quod
-							maiores quo? Placeat excepturi quae facere vero.
-						</p>
+						<p>{Except}</p>
 					</div>
 				</div>
 			</article>

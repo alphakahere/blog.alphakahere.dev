@@ -1,11 +1,11 @@
 import Head from "next/head";
-import { Poppins } from "next/font/google";
+import { Preahvihear } from "next/font/google";
 import Header from "@/components/Header";
 import ListPost from "@/components/ListPost";
 import Footer from "@/components/Footer";
 import Layout from "@/components/Layout";
 
-const poppins = Poppins({ subsets: ["devanagari"], weight: ["300", "400", "500"] });
+const poppins = Preahvihear({ subsets: ["latin"], weight: ["400"] });
 
 export default function Home() {
 	return (
@@ -21,6 +21,9 @@ export default function Home() {
 					<Header />
 					<main className="bg-gray-50 dark:bg-dark min-h-screen  py-14">
 						<div className="app-container">
+							<h1 className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 text-3xl font-bold">
+								Tutoriels et articles
+							</h1>
 							<ListPost />
 						</div>
 					</main>

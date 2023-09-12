@@ -14,4 +14,5 @@ export interface Post {
 	tags: string[];
 	_createdAt: string;
 	_updatedAt: string;
+	estimatedReadingTime: number;
 }

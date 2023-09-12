@@ -13,7 +13,7 @@ const page = ({ post }: { post: Post }) => {
 	return (
 		<Layout>
 			<SmallHeader />
-			<div className="app-container mt-20">
+			<div className="app-container">
 				<div className="text-black dark:text-white">
 					<h1 className="text-5xl text-center mb-3 font-medium">{title}</h1>
 					<div className="flex items-center justify-between mb-3">

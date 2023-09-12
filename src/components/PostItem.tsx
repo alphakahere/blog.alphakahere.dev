@@ -6,7 +6,7 @@ import { Post } from "@/lib/type";
 import { urlFor } from "../lib/client";
 
 const PostItem = ({ post, i }: { post: Post; i: number }) => {
-	const { title, mainImage, Except, slug } = post;
+	const { title, mainImage, Except, slug, tags, estimatedReadingTime } = post;
 	return (
 		<Link href={`/${slug.current}`} className="rounded-lg p-1px text-dark dark:text-white">
 			<article className="border bg-slate border-slate dark:border-gray-700 dark:bg-dark4 rounded-lg">
@@ -23,19 +23,26 @@ const PostItem = ({ post, i }: { post: Post; i: number }) => {
 				<div className="p-3">
 					<div className="flex items-center justify-between  text-sm mb-2 text-gray-600 dark:text-gray-400">
 						<ul className="flex space-x-1 ">
-							<li className="text-sm">#react</li>
-							<li className="text-sm">#redux</li>
+							{tags?.map((tag, i) => (
+								<li className="text-sm" key={i}>
+									#{tag}
+								</li>
+							))}
 						</ul>
 						<div className="flex items-center gap-2">
 							<FiClock />
-							<span>3 mins</span>
+							<span>{estimatedReadingTime} mins</span>
 						</div>
 					</div>
-					<div>
-						<h3 className="text-lg font-medium leading-8 text-opacity-80 transition-all ease-linear duration-300 hover:text-opacity-100">
+					<div className="mt-3">
+						<h3 className="text-lg font-semibold leading-8 text-opacity-80 transition-all ease-linear duration-300 hover:text-opacity-100">
 							{title}
 						</h3>
-						<p>{Except}</p>
+						<div className="mt-2">
+							<p className="text-base text-white text-opacity-70">
+								{Except}
+							</p>
+						</div>
 					</div>
 				</div>
 			</article>

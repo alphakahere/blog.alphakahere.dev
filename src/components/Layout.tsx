@@ -19,6 +19,7 @@ const Layout = ({ children }: Props): JSX.Element => (
 			exit="exit"
 			variants={variants}
 			transition={{ type: "linear", duration: 1.5 }}
+			className="dark:bg-dark min-h-screen"
 		>
 			{children}
 		</motion.main>

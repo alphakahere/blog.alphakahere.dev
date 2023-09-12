@@ -95,7 +95,7 @@ const Header = () => {
 export const SmallHeader = () => {
 	const { theme } = useTheme();
 	return (
-		<header className="text-white bg-gradient fixed top-0 left-0 w-full">
+		<header className="text-white bg-gradient-to-b from-violet-500 to-blue-500 fixed top-0 left-0 w-full">
 			<div className="app-container">
 				<nav className="flex items-center justify-between py-1">
 					<div>

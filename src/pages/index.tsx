@@ -10,7 +10,6 @@ import { Post } from "@/lib/type";
 const poppins = Preahvihear({ subsets: ["latin"], weight: ["400"] });
 
 export default function Home({ posts }: { posts: Post[] }) {
-	console.log({ posts });
 	return (
 		<>
 			<Head>

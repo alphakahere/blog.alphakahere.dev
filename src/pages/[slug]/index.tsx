@@ -9,12 +9,13 @@ import { Post } from "@/lib/type";
 import { PortableText } from "@portabletext/react";
 
 const page = ({ post }: { post: Post }) => {
-	const { title, mainImage, content } = post;
+	const { title, mainImage, body, estimatedReadingTime, tags } = post;
+	console.log({ post });
 	return (
 		<Layout>
 			<SmallHeader />
-			<div className="app-container">
-				<div className="text-black dark:text-white">
+			<div className="app-container pt-5">
+				<div className="text-black dark:text-white mt-32">
 					<h1 className="text-5xl text-center mb-3 font-medium">{title}</h1>
 					<div className="flex items-center justify-between mb-3">
 						<div className="flex items-center space-x-3">
@@ -27,26 +28,31 @@ const page = ({ post }: { post: Post }) => {
 									className="w-14 h-14 rounded-full"
 								/>
 							</div>
-							<h3 className="text-gradient-theme">
-								Alpha Amadou Diallo
-							</h3>
+							<h3 className="text-white">Alpha Amadou Diallo</h3>
 						</div>
 						<div>
-							<h5>6 mins</h5>
+							<h5>{estimatedReadingTime} mins</h5>
 						</div>
 					</div>
 					<div className="mb-3">
 						<Image
-							className="rounded-lg w-full h-[80vh] sm:h-[70vh] lg:h-[60vh] object-fill"
+							className="rounded-lg w-full h-[70vh] sm:h-[70vh] lg:h-[60vh] object-cover"
 							src={urlFor(mainImage).url()}
 							alt="project"
 							width={200}
 							height={500}
 						/>
+						<ul className="flex flex-wrap space-x-2 justify-center mt-2">
+							{tags?.map((tag, i) => (
+								<li className="text-sm" key={i}>
+									#{tag}
+								</li>
+							))}
+						</ul>
 					</div>
 
 					<div className="text-lg leading-8 mb-2 font-normal">
-						<PortableText value={content} />
+						<PortableText value={body} />
 					</div>
 				</div>
 			</div>
@@ -78,7 +84,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
-	const query = `*[_type == "post" && slug.current == '${slug}'][0]`;
+	const query = `*[_type == "post" && slug.current == '${slug}'][0]{slug, mainImage, title,body, Except, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }`;
 	const postsQuery = '*[_type == "post"]';
 
 	const post = await client.fetch(query);

@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "@sanity/base": "^2.36.2",
+    "@sanity/code-input": "^2.36.0",
     "@sanity/core": "^2.36.2",
     "@sanity/default-layout": "^2.36.2",
     "@sanity/default-login": "^2.36.2",
@@ -27,7 +28,6 @@
     "react-dom": "^17.0",
     "styled-components": "^5.2.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/alphakahere/blog.alphakahere.dev.git"

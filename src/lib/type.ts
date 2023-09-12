@@ -7,7 +7,7 @@ export interface Post {
 	title: string;
 	source: string;
 	demo: string;
-	content: string;
+	content: any;
 	except: string;
 	Except: string;
 	mainImage: string;

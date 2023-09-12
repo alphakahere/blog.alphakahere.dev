@@ -9,9 +9,9 @@ import { data } from "../../data";
 const Header = () => {
 	const { theme } = useTheme();
 	return (
-		<header className="border-b border-gray-700 pt-4 bg-white dark:bg-dark">
-			<div className="w-96 h-96 rounded-full absolute bg-violet-600 left-1/2 -translate-x-1/2 top-[-300px] backdrop-blur-2xl bg-opacity-50"></div>
-			<div className=" min-h-[60vh]">
+		<header className="shadow-2xl pt-4 bg-white dark:bg-dark relative  min-h-[60vh] overflow-x-hidden header">
+			<div className="w-96 h-96 rounded-full absolute bg-blue-600 left-1/2 -translate-x-1/2 top-[-350px] blur-3xl "></div>
+			<div className="">
 				<div className="app-container">
 					<nav className="flex items-center justify-between mb-24">
 						<div>

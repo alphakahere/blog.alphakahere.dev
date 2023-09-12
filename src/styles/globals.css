@@ -5,6 +5,9 @@
 .app-container {
 	@apply container mx-auto max-w-screen-2xl  p-3 md:px-6 lg:px-10 2xl:px-16;
 }
+.header {
+	background-image: url("../assets/download.svg");
+}
 .text-gradient-theme,
 .card-title:hover {
 	font-style: normal;

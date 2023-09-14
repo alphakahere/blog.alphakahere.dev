@@ -6,11 +6,78 @@ import Avatar from "../../assets/avatar.png";
 import Layout from "@/components/Layout";
 import { client, urlFor } from "../../lib/client";
 import { Post } from "@/lib/type";
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { Highlight, themes } from "prism-react-renderer";
+
+// `components` object you'll pass to PortableText
+const components: Partial<PortableTextComponents | any> = {
+	myCodeField: ({ value }: { value: { code: string } }) => (
+		<pre>
+			<code>{value.code}</code>
+		</pre>
+	),
+	types: {
+		codeBlock: (node: { value: { code: string; filename: string; language: string } }) => {
+			const { language, filename, code } = node.value;
+			console.log({ node });
+
+			return (
+				<div className="bg-gray-900">
+					<div className="flex justify-between ">
+						<p className="opacity-70">{filename}</p>
+						<p>
+							language: <span className="opacity-70">{language}</span>
+						</p>
+					</div>
+					<Highlight
+						theme={themes.vsDark}
+						code={code}
+						language={language ?? "jsx"}
+					>
+						{({ style, tokens, getLineProps, getTokenProps }) => (
+							<pre
+								style={style}
+								className="p-2 rounded overflow-x-auto"
+							>
+								{tokens.map((line, i) => (
+									<div key={i} {...getLineProps({ line })}>
+										{line.map((token, key) => (
+											<span
+												key={key}
+												{...getTokenProps({
+													token,
+												})}
+											/>
+										))}
+									</div>
+								))}
+							</pre>
+						)}
+					</Highlight>
+				</div>
+			);
+		},
+	},
+
+	block: {
+		// @ts-ignore
+		h1: ({ children }) => (
+			<h1 className="text-3xl font-bold mb-3 leading-10">#{children}</h1>
+		),
+	},
+
+	marks: {
+		code: ({ children }: { children: any }) => (
+			<pre className="bg-gray-700 p-3 rounded">
+				<code>{children}</code>
+			</pre>
+		),
+	},
+};
 
 const page = ({ post }: { post: Post }) => {
 	const { title, mainImage, body, estimatedReadingTime, tags } = post;
-	console.log({ post });
+	// console.log({ post });
 	return (
 		<Layout>
 			<SmallHeader />
@@ -52,7 +119,7 @@ const page = ({ post }: { post: Post }) => {
 					</div>
 
 					<div className="text-lg leading-8 mb-2 font-normal">
-						<PortableText value={body} />
+						<PortableText value={body} components={components} />
 					</div>
 				</div>
 			</div>

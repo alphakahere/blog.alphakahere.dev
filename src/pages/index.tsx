@@ -38,7 +38,7 @@ export default function Home({ posts }: { posts: Post[] }) {
 
 export const getServerSideProps = async () => {
 	const query =
-		'*[_type == "post"]{slug, mainImage, title, Except, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }';
+		'*[_type == "post"]{slug, mainImage, title, except, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }';
 	const posts = await client.fetch(query);
 
 	return {

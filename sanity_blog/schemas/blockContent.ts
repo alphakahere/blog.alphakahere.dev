@@ -77,11 +77,13 @@ export default {
 		},
 		{
 			type: "code",
-			name: "myCodeField",
+			name: "codeBlock",
 			title: "Code",
+			description: "Enter your code here",
 			options: {
 				withFilename: true, // optional
 				highlightedLines: true, // optional
+				theme: "github",
 			},
 		},
 	],

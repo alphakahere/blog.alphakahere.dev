@@ -6,7 +6,7 @@ import { Post } from "@/lib/type";
 import { urlFor } from "../lib/client";
 
 const PostItem = ({ post, i }: { post: Post; i: number }) => {
-	const { title, mainImage, Except, slug, tags, estimatedReadingTime } = post;
+	const { title, mainImage, except, slug, tags, estimatedReadingTime } = post;
 	return (
 		<Link href={`/${slug.current}`} className="rounded-lg p-1px text-dark dark:text-white">
 			<article className="border bg-slate border-slate dark:border-gray-700 dark:bg-dark4 rounded-lg">
@@ -40,7 +40,7 @@ const PostItem = ({ post, i }: { post: Post; i: number }) => {
 						</h3>
 						<div className="mt-2">
 							<p className="text-base text-white text-opacity-70">
-								{Except}
+								{except}
 							</p>
 						</div>
 					</div>

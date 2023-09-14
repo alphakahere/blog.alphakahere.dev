@@ -9,7 +9,6 @@ export interface Post {
 	demo: string;
 	body: any;
 	except: string;
-	Except: string;
 	mainImage: string;
 	tags: string[];
 	_createdAt: string;

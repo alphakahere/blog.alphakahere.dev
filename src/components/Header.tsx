@@ -3,86 +3,69 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import ToggleModeButton from "./ToggleModeButton";
-import Avatar from "../assets/avatar.png";
+import illustration from "../assets/illustration.png";
 import { data } from "../../data";
+import Navbar from "./Navbar";
 
 const Header = () => {
-	const { theme } = useTheme();
 	return (
-		<header className="shadow-2xl pt-4 bg-white dark:bg-dark relative  min-h-[60vh] overflow-x-hidden header">
-			<div className="w-96 h-96 rounded-full absolute bg-blue-600 left-1/2 -translate-x-1/2 top-[-350px] blur-3xl "></div>
-			<div className="">
-				<div className="app-container">
-					<nav className="flex items-center justify-between mb-24">
-						<div>
-							<Link
-								href="/"
-								className="text-white text-3xl leading-6"
-								data-theme={theme}
-							>
-								alphakahere.blog
-							</Link>
-						</div>
-						<div>
-							<ToggleModeButton />
-						</div>
-					</nav>
-					<div className="flex flex-col items-center space-y-10 lg:flex-row-reverse">
-						{/* <div className="lg:w-1/3 flex justify-center">
-							<div className="w-36 h-36 lg:w-48 lg:h-48 bg-gradient-to-tr from-sky-300 via-fuchsia-500 to-purple-500 rounded-full hover:from-pink-400 hover:via-fuchsia-600 hover:to-purple-500 transition-all ease-linear duration-500">
-								<Image
-									src={Avatar}
-									alt="avatar"
-									width={100}
-									height={100}
-									className="w-36 h-36 lg:w-48 lg:h-48 rounded-full"
-								/>
-							</div>
-						</div> */}
-						<div className="flex flex-col items-center">
-							<div className="flex flex-col space-y-6 mb-10 text-center">
-								<h3 className="text-base text-dark dark:text-white font-bold">
-									&#128075; Hi, Je suis Alpha Amadou Diallo
-								</h3>
-								<h1 className="text-white text-xl leading-7 font-bold lg:text-3xl lg:leading-10">
-									Dévoloppeur web |{" "}
-									<strong className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
-										ReactJS, Laravel
-									</strong>{" "}
-								</h1>
-								<p className="text-gray-100">
-									{`Passionné de technologie, de
-										connaissance , d'éducation et de
-										partage. Lorem, ipsum dolor sit amet
-										consectetur adipisicing elit. Culpa a,
-										est debitis at maxime cupiditate! Eaque
-										veniam neque ipsam earum dolor. Minus
-										enim non nisi deleniti necessitatibus
-										amet eius dolor.`}
+		<header className="pt-2 bg-light dark:bg-dark relative  2xl:min-h-[60vh] overflow-x-hidden header border-b dark:border-gray-900 pb-10">
+			<div className="w-24 h-24 lg:w-96 lg:h-96 rounded-full absolute bg-blue-600 left-1/2 -translate-x-1/2 top-0 lg:top-[-300px] blur-3xl" />
+			<div className="app-container">
+				<Navbar />
+				<div className="flex flex-col items-center space-y-10 md:flex-row-reverse gap-10">
+					<div className="md:w-1/3  justify-center hidden md:flex">
+						<Image src={illustration} alt="avatar" className="w-full" />
+					</div>
+					<div className="flex flex-col md:w-2/3">
+						<div className="flex flex-col space-y-6 mb-10">
+							<h3 className="text-base text-darkText dark:text-white font-bold">
+								&#128075; Hi, Je suis Alpha Amadou Diallo
+							</h3>
+							<h1 className="text-xl leading-7 font-bold lg:text-3xl lg:leading-10">
+								<strong className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-blue-600 to-blue-500">
+									Dévoloppeur web
+								</strong>{" "}
+							</h1>
+							<div className="text-base font-normal leading-7 lg:text-lg lg:leading-8">
+								<p className="text-darkText dark:text-gray-100 mb-2">
+									Passionné de code, de design, de partage et
+									également de nocode.
+								</p>
+								<p className="text-darkText dark:text-gray-100">
+									Bienvenue sur mon blog, ici je vous partage
+									mes expériences, des astuces, des tutoriels et
+									des articles sur le développement web mais le
+									plus souvent nous aborderons des sujets liés à
+									React et à son écosystème.
 								</p>
 							</div>
-							<div>
-								<ul className="flex gap-3 mb-10">
-									{data.socials.map((item) => (
-										<li
-											key={item.title}
-											className="list-none"
+						</div>
+						<div>
+							<ul className="flex gap-5 mb-10">
+								{data.socials.map((item) => (
+									<li key={item.title} className="list-none">
+										<a
+											href={item.url}
+											target="_blank"
+											className="transition-all ease-in duration-300 text-darkText dark:text-white opacity-80 hover:opacity-100"
 										>
-											<a
-												href={item.url}
-												target="_blank"
-												className="w-9 h-9 rounded-full flex items-center justify-center text-lg transition-all ease-in duration-300"
-											>
-												<item.icon />
-											</a>
-										</li>
-									))}
-								</ul>
-								<div>
-									<button className="bg-blue-700 px-3 py-2 rounded-3xl font-medium hover:bg-blue-800 transition-all ease-in duration-300">
+											<item.icon fontSize={20} />
+										</a>
+									</li>
+								))}
+							</ul>
+							<div>
+								<a
+									href="mailto:hello@alphakahere.dev"
+									className="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-blue-800"
+								>
+									<span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
+									<span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-blue-700 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+									<span className="relative text-white font-medium">
 										Contactez-moi
-									</button>
-								</div>
+									</span>
+								</a>
 							</div>
 						</div>
 					</div>

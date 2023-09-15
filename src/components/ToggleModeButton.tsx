@@ -9,7 +9,7 @@ const ToggleModeButton = () => {
 	return (
 		<button
 			onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
-			className="text-gray-100"
+			className="text-black text-opacity-60  dark:text-gray-100"
 		>
 			<motion.div layout>
 				{currentTheme === "dark" ? (

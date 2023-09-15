@@ -7,10 +7,8 @@ module.exports = {
 			colors: {
 				dark1: "#0D1224",
 				dark: "#000",
-				// dark: "#09010F",
-				// dark: "#121212",
-				// dark: "#070616",
-				// darkv: "#101112",
+				darkText: "#2B2C34",
+				light: "#EFF0F3"
 			},
 			padding: {
 				"1px": "1px",

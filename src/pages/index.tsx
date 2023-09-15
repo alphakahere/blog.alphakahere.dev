@@ -22,8 +22,8 @@ export default function Home({ posts }: { posts: Post[] }) {
 				<div className={`${poppins.className}`}>
 					<Header />
 					<main className="bg-gray-50 dark:bg-dark min-h-screen  py-14">
-						<div className="app-container">
-							<h1 className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 text-3xl font-bold">
+						<div className="app-container overflow-x-hidden">
+							<h1 className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-blue-600 to-blue-500 text-xl leading-7 font-bold lg:text-2xl lg:leading-10 mb-3">
 								Tutoriels et articles
 							</h1>
 							<ListPost posts={posts} />

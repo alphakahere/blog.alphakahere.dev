@@ -1,8 +1,8 @@
 import { PortableTextComponents } from "@portabletext/react";
 import React from "react";
-// import { Highlight, themes } from "prism-react-renderer";
+import { Highlight, themes } from "prism-react-renderer";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { anOldHope as theme } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { vs2015 as theme } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import CopyButton from "./CopyButton";
 
 // anOldHope
@@ -22,14 +22,14 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 						</p>
 						<CopyButton codeToCopy={code} />
 					</div>
-					<SyntaxHighlighter
+					{/* <SyntaxHighlighter
 						language={language ?? "javascript"}
 						style={theme}
 						customStyle={{ fontSize: "20px" }}
 					>
 						{code}
-					</SyntaxHighlighter>
-					{/* <Highlight
+					</SyntaxHighlighter> */}
+					<Highlight
 						theme={themes.vsDark}
 						code={code}
 						language={language ?? "jsx"}
@@ -53,7 +53,7 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 								))}
 							</pre>
 						)}
-					</Highlight> */}
+					</Highlight>
 				</div>
 			);
 		},

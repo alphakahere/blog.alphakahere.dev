@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaClipboard } from "react-icons/fa";
 
 const CopyButton = ({ codeToCopy }: { codeToCopy: string }) => {
 	const [isCopied, setIsCopied] = useState(false);
@@ -9,7 +10,11 @@ const CopyButton = ({ codeToCopy }: { codeToCopy: string }) => {
 		});
 	};
 
-	return <button onClick={copyToClipboard}>{isCopied ? "Copied!" : "Copy"}</button>;
+	return (
+		<button onClick={copyToClipboard} title={isCopied ? "Copié" : "Copier"}>
+			{isCopied ? "Copied!" : <FaClipboard />}
+		</button>
+	);
 };
 
 export default CopyButton;

@@ -1,64 +1,56 @@
 import { PortableTextComponents } from "@portabletext/react";
 import React from "react";
-import { Highlight, themes } from "prism-react-renderer";
-import CopyButton from "./CopyButton";
+import CodeBlocks from "./CodeBlocks";
 
+type CodeBlock = {
+	value: { code: string; filename: string; language: string };
+};
 // `components` object you'll pass to PortableText
 const PortableSerializers: Partial<PortableTextComponents> = {
 	types: {
-		codeBlock: (node: { value: { code: string; filename: string; language: string } }) => {
-			const { language, filename, code } = node.value;
-			return (
-				<div className="bg-zinc-800 pt-3">
-					<div className="flex justify-end px-3">
-						<p>
-							language: <span className="opacity-70">{language}</span>
-						</p>
-						<CopyButton codeToCopy={code} />
-					</div>
-					<Highlight
-						theme={themes.vsDark}
-						code={code}
-						language={language ?? "jsx"}
-					>
-						{({ style, tokens, getLineProps, getTokenProps }) => (
-							<pre
-								style={style}
-								className="p-2 rounded overflow-x-auto"
-							>
-								{tokens.map((line, i) => (
-									<div key={i} {...getLineProps({ line })}>
-										{line.map((token, key) => (
-											<span
-												key={key}
-												{...getTokenProps({
-													token,
-												})}
-											/>
-										))}
-									</div>
-								))}
-							</pre>
-						)}
-					</Highlight>
-				</div>
-			);
+		codeBlock: ({ value }: CodeBlock) => {
+			const { language, code } = value;
+			return <CodeBlocks language={language} code={code} />;
 		},
 	},
 
 	block: {
 		// @ts-ignore
 		h1: ({ children }) => (
-			<h1 className="text-3xl font-bold mb-3 leading-10">#{children}</h1>
+			<h1 className="text-3xl font-semibold mb-3 leading-10"># {children}</h1>
+		),
+		h2: ({ children }) => (
+			<h1 className="text-xl font-semibold mb-3 mt-3 leading-10"># {children}</h1>
+		),
+		h3: ({ children }) => (
+			<h1 className="text-3xl font-semibold mb-3 leading-10"># {children}</h1>
 		),
 	},
 
 	marks: {
-		// code: ({ children }: { children: any }) => (
-		// 	<pre className="bg-gray-700 p-3 rounded">
-		// 		<code>{children}</code>
-		// 	</pre>
-		// ),
+		code: ({ children }: { children: any }) => (
+			<pre className="bg-gray-700 p-3 rounded">
+				<code>{children}</code>
+			</pre>
+		),
+		em: ({ children }) => <em className="text-gray-600 font-semibold">{children}</em>,
+
+		link: ({ value, children }) => {
+			const target = (value?.href || "").startsWith("http") ? "_blank" : undefined;
+			return (
+				<a
+					href={value?.href}
+					target={target}
+					rel={
+						target === "_blank"
+							? "noindex nofollow noopener noreferrer"
+							: ""
+					}
+				>
+					{children}
+				</a>
+			);
+		},
 	},
 };
 

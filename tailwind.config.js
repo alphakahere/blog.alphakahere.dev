@@ -9,7 +9,8 @@ module.exports = {
 				dark: "#000",
 				// dark: "#0D1117",
 				darkText: "#2B2C34",
-				light: "#EFF0F3"
+				light: "#EFF0F3",
+				cGray: "#ced2d9",
 			},
 			padding: {
 				"1px": "1px",

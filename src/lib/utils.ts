@@ -24,3 +24,16 @@ export function useWindowDimension() {
 		height: windowDimensions.height,
 	};
 }
+
+export function formatDate(datetime: string) {
+	const date = new Date(datetime);
+	const options: Intl.DateTimeFormatOptions = {
+		year: "numeric",
+		month: "short", // Use 'short' for abbreviated month names
+		day: "numeric",
+	};
+
+	const formattedDate = new Intl.DateTimeFormat("fr-FR", options).format(date);
+
+	return formattedDate;
+}

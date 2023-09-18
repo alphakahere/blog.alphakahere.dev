@@ -1,23 +1,26 @@
-import Footer from "@/components/Footer";
-import { SmallHeader } from "@/components/Header";
 import Image from "next/image";
 import React from "react";
 import Avatar from "../../assets/avatar.png";
 import Layout from "@/components/Layout";
 import { client, urlFor } from "../../lib/client";
 import { Post } from "@/lib/type";
-import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 import PortableSerializers from "@/components/PortableTextComponent";
 
 const page = ({ post }: { post: Post }) => {
 	const { title, mainImage, body, estimatedReadingTime, tags } = post;
-	// console.log({ post });
 	return (
 		<Layout>
-			<SmallHeader />
-			<div className="app-container pt-5">
-				<div className="text-black dark:text-white mt-32">
-					<h1 className="text-5xl text-center mb-3 font-medium">{title}</h1>
+			<div>
+				<div className="text-black dark:text-white">
+					<h1 className="text-4xl text-center mb-3 font-medium">{title}</h1>
+					<ul className="flex flex-wrap space-x-2 justify-center mt-2">
+						{tags?.map((tag, i) => (
+							<li className="text-sm" key={i}>
+								#{tag}
+							</li>
+						))}
+					</ul>
 					<div className="flex items-center justify-between mb-3">
 						<div className="flex items-center space-x-3">
 							<div className="w-14 h-14  bg-gradient-to-tr from-sky-300 via-fuchsia-500 to-purple-500 rounded-full hover:from-pink-400 hover:via-fuchsia-600 hover:to-purple-500 transition-all ease-linear duration-500">
@@ -33,6 +36,7 @@ const page = ({ post }: { post: Post }) => {
 						</div>
 						<div>
 							<h5>{estimatedReadingTime} mins</h5>
+							<button>Share</button>
 						</div>
 					</div>
 					<div className="mb-3">
@@ -42,14 +46,12 @@ const page = ({ post }: { post: Post }) => {
 							alt="project"
 							width={200}
 							height={500}
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 						/>
-						<ul className="flex flex-wrap space-x-2 justify-center mt-2">
-							{tags?.map((tag, i) => (
-								<li className="text-sm" key={i}>
-									#{tag}
-								</li>
-							))}
-						</ul>
+						<div>
+							<button>Code</button>
+							<button>Demo</button>
+						</div>
 					</div>
 
 					<div className="text-lg leading-8 mb-2 font-normal">
@@ -57,7 +59,6 @@ const page = ({ post }: { post: Post }) => {
 					</div>
 				</div>
 			</div>
-			<Footer />
 		</Layout>
 	);
 };

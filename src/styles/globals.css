@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .app-container {
-	@apply container mx-auto max-w-screen-2xl  p-3 md:px-6 lg:px-10 2xl:px-16;
+	@apply container mx-auto max-w-screen-2xl  px-3 md:px-6 lg:px-10 2xl:px-16;
 }
 .header {
 	background-image: url("../assets/grid.svg");

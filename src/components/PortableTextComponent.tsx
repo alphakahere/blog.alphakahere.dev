@@ -1,19 +1,13 @@
 import { PortableTextComponents } from "@portabletext/react";
 import React from "react";
 import { Highlight, themes } from "prism-react-renderer";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { vs2015 as theme } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import CopyButton from "./CopyButton";
-
-// anOldHope
 
 // `components` object you'll pass to PortableText
 const PortableSerializers: Partial<PortableTextComponents> = {
 	types: {
 		codeBlock: (node: { value: { code: string; filename: string; language: string } }) => {
 			const { language, filename, code } = node.value;
-			console.log({ node });
-
 			return (
 				<div className="bg-zinc-800 pt-3">
 					<div className="flex justify-end px-3">
@@ -22,13 +16,6 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 						</p>
 						<CopyButton codeToCopy={code} />
 					</div>
-					{/* <SyntaxHighlighter
-						language={language ?? "javascript"}
-						style={theme}
-						customStyle={{ fontSize: "20px" }}
-					>
-						{code}
-					</SyntaxHighlighter> */}
 					<Highlight
 						theme={themes.vsDark}
 						code={code}

@@ -1,13 +1,11 @@
 import Head from "next/head";
 import { Preahvihear } from "next/font/google";
-import Header from "@/components/Header";
 import ListPost from "@/components/ListPost";
-import Footer from "@/components/Footer";
 import Layout from "@/components/Layout";
 import { client } from "../lib/client";
 import { Post } from "@/lib/type";
 
-const poppins = Preahvihear({ subsets: ["latin"], weight: ["400"] });
+const preahvihear = Preahvihear({ subsets: ["latin"], weight: ["400"] });
 
 export default function Home({ posts }: { posts: Post[] }) {
 	return (
@@ -19,18 +17,10 @@ export default function Home({ posts }: { posts: Post[] }) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Layout>
-				<div className={`${poppins.className}`}>
-					<Header />
-					<main className="bg-gray-50 dark:bg-dark min-h-screen  py-14">
-						<div className="app-container overflow-x-hidden">
-							<h1 className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-blue-600 to-blue-500 text-xl leading-7 font-bold lg:text-2xl lg:leading-10 mb-3">
-								Tutoriels et articles
-							</h1>
-							<ListPost posts={posts} />
-						</div>
-					</main>
-					<Footer />
-				</div>
+				<h1 className="text-darkText dark:text-white text-xl leading-7 font-bold lg:text-2xl lg:leading-10 mb-3">
+					Tutoriels et articles
+				</h1>
+				<ListPost posts={posts} />
 			</Layout>
 		</>
 	);

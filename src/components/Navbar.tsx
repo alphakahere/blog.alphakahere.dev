@@ -6,14 +6,20 @@ import { useTheme } from "next-themes";
 const Navbar = () => {
 	const { theme } = useTheme();
 	return (
-		<nav className="flex items-center justify-between 2xl:mb-14">
-			<div>
-				<Link href="/" className="text-darkText dark:text-white text-xl leading-8 font-medium md:text-2xl xl:text-3xl" data-theme={theme}>
-					alphakahere.blog
-				</Link>
-			</div>
-			<div>
-				<ToggleModeButton />
+		<nav className="py-3">
+			<div className="app-container flex items-center justify-between">
+				<div>
+					<Link
+						href="/"
+						className="text-darkText dark:text-white text-xl leading-8 font-medium md:text-2xl xl:text-3xl"
+						data-theme={theme}
+					>
+						alphakahere.blog
+					</Link>
+				</div>
+				<div>
+					<ToggleModeButton />
+				</div>
 			</div>
 		</nav>
 	);

@@ -9,7 +9,7 @@ const ToggleModeButton = () => {
 	return (
 		<button
 			onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}
-			className="text-gray-100"
+			className="text-black text-opacity-60  dark:text-gray-100"
 		>
 			<motion.div layout>
 				{currentTheme === "dark" ? (
@@ -19,7 +19,7 @@ const ToggleModeButton = () => {
 						viewBox="0 0 24 24"
 						strokeWidth={1.5}
 						stroke="currentColor"
-						className="w-6 h-6"
+						className="w-7 h-7"
 					>
 						<path
 							strokeLinecap="round"
@@ -32,7 +32,7 @@ const ToggleModeButton = () => {
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
 						fill="currentColor"
-						className="w-6 h-6"
+						className="w-7 h-7"
 					>
 						<path
 							fillRule="evenodd"

@@ -1,12 +1,13 @@
 import Head from "next/head";
-import { Poppins } from "next/font/google";
-import Header from "@/components/Header";
-import ListCard from "@/components/ListCard";
-import Footer from "@/components/Footer";
+import { Preahvihear } from "next/font/google";
+import ListPost from "@/components/ListPost";
+import Layout from "@/components/Layout";
+import { client } from "../lib/client";
+import { Post } from "@/lib/type";
 
-const poppins = Poppins({ subsets: ["devanagari"], weight: ["300", "400", "500"] });
+const preahvihear = Preahvihear({ subsets: ["latin"], weight: ["400"] });
 
-export default function Home() {
+export default function Home({ posts }: { posts: Post[] }) {
 	return (
 		<>
 			<Head>
@@ -15,15 +16,22 @@ export default function Home() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className={`${poppins.className}`}>
-				<Header />
-				<main className="bg-gray-50 dark:bg-dark min-h-screen  py-14">
-					<div className="app-container">
-						<ListCard />
-					</div>
-				</main>
-				<Footer />
-			</div>
+			<Layout>
+				<h1 className="text-darkText dark:text-white text-xl leading-7 font-bold lg:text-2xl lg:leading-10 mb-3">
+					Tutoriels et articles
+				</h1>
+				<ListPost posts={posts} />
+			</Layout>
 		</>
 	);
 }
+
+export const getServerSideProps = async () => {
+	const query =
+		'*[_type == "post"]{slug, mainImage, title, except, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }';
+	const posts = await client.fetch(query);
+
+	return {
+		props: { posts },
+	};
+};

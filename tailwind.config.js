@@ -5,11 +5,12 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				dark: "#070616",
-				dark2: "#03001C",
-				dark3: "#001427",
-				dark4: "#09010F",
-				slate: "#e8edf5",
+				dark: "#0D1224",
+				dark: "#000",
+				// dark: "#0D1117",
+				darkText: "#2B2C34",
+				light: "#EFF0F3",
+				cGray: "#ced2d9",
 			},
 			padding: {
 				"1px": "1px",

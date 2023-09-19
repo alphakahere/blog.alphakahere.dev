@@ -29,7 +29,7 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 		),
 		normal: ({ children }) => <p className="text-justify mb-3">{children}</p>,
 		blockquote: ({ children }) => (
-			<blockquote className="border-l-[3px] border-l-blue-500  block p-2 mb-3">
+			<blockquote className="border-l-[4px] border-l-blue-500  block p-2 mb-3">
 				{children}
 			</blockquote>
 		),

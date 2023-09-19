@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+const BASE_URL = "blog.alphakahere.dev";
 
 const nextConfig = {
 	reactStrictMode: true,

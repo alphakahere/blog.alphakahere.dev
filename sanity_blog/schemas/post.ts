@@ -7,7 +7,7 @@ export default {
 			name: "title",
 			title: "Title",
 			type: "string",
-			validation: (Rule) => Rule.required().error("This field is required"),
+			validation: (Rule: any) => Rule.required().error("This field is required"),
 		},
 		{
 			name: "slug",
@@ -17,7 +17,7 @@ export default {
 				source: "title",
 				maxLength: 100,
 			},
-			validation: (Rule) => Rule.required(),
+			validation: (Rule: any) => Rule.required(),
 		},
 		{
 			name: "except",
@@ -31,7 +31,7 @@ export default {
 			name: "source",
 			title: "Source",
 			type: "url",
-			validation: (Rule) =>
+			validation: (Rule: any) =>
 				Rule.uri({
 					scheme: ["https"],
 				}),
@@ -40,7 +40,7 @@ export default {
 			name: "demo",
 			title: "Demo",
 			type: "url",
-			validation: (Rule) =>
+			validation: (Rule: any) =>
 				Rule.uri({
 					scheme: ["https"],
 				}),
@@ -64,7 +64,7 @@ export default {
 			title: "Tags",
 			type: "array",
 			of: [{ type: "reference", to: { type: "tag" } }],
-			validation: (Rule) => Rule.required(),
+			validation: (Rule: any) => Rule.required(),
 		},
 		{
 			name: "updatedAt",

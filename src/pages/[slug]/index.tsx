@@ -56,16 +56,16 @@ const page = ({ post }: { post: Post }) => {
 							</button>
 						</div>
 					</div>
-					<div className="mb-4">
+					<div className="mb-8">
 						<Image
-							className="rounded-lg w-full lg:max-h-[60vh] object-cover"
+							className="rounded-lg w-full lg:max-h-[60vh] object-cover mb-4"
 							src={urlFor(mainImage).url()}
 							alt="project"
 							width={200}
 							height={500}
 							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 						/>
-						<div className="flex items-center justify-center my-3 gap-3">
+						<div className="flex items-center justify-center mb-3 gap-3">
 							<a
 								href={source}
 								className="text-white font-semibold bg-blue-500  px-5 py-2 rounded-lg transition duration-300 ease-in hover:bg-blue-600"
@@ -85,7 +85,7 @@ const page = ({ post }: { post: Post }) => {
 						</div>
 					</div>
 
-					<div className="text-lg leading-8 mb-2 font-normal text-cGray">
+					<div className="text-lg leading-8 mb-2 font-normal text-darkText dark:text-cGray">
 						<PortableText value={body} components={PortableSerializers} />
 					</div>
 				</div>
@@ -122,8 +122,6 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
 
 	const post = await client.fetch(query);
 	const posts = await client.fetch(postsQuery);
-
-	console.log(post);
 
 	return {
 		props: { posts, post },

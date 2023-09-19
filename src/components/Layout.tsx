@@ -24,7 +24,7 @@ const Layout = ({ children }: Props): JSX.Element => (
 			exit="exit"
 			variants={variants}
 			transition={{ type: "linear", duration: 1.5 }}
-			className={`bg-white dark:bg-dark ${preahvihear.className}`}
+			className={`bg-gray-100 dark:bg-dark ${preahvihear.className}`}
 		>
 			<Header />
 			<main className="overflow-x-hidden app-container  min-h-screen py-14">

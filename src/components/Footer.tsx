@@ -5,14 +5,16 @@ import { BsFillHeartFill } from "react-icons/bs";
 const Footer = () => {
 	const currentYear = new Date().getFullYear();
 	return (
-		<footer className="bg-white dark:bg-dark shadow-xl shadow-gray-900 border-t border-gray-200 dark:border-gray-900 py-6 text-darkText dark:text-white text-center relative ">
+		<footer className="bg-gray-100 dark:bg-dark shadow-xl shadow-gray-900 border-t border-gray-300 dark:border-gray-900 py-6 text-darkText dark:text-white text-center relative ">
 			<div className="flex flex-col md:flex-row justify-between items-center app-container gap-3">
 				<p>© {currentYear}. Tous Droits Réservés.</p>
 				<SocialConnect size={20} />
 				<div className="flex items-center gap-1">
-					<p>Built with passion</p>
-					<BsFillHeartFill className="inline-block text-pink-600" /> by
-					<a href="">alphakahere</a>
+					<p>Développé avec passion</p>
+					<BsFillHeartFill className="inline-block text-pink-600" /> par
+					<a href="" className="hover:underline underline-offset-4">
+						alphakahere
+					</a>
 				</div>
 			</div>
 		</footer>

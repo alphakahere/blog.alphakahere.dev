@@ -8,11 +8,11 @@ interface Props {
 }
 const CodeBlocks = ({ language, code }: Props) => {
 	return (
-		<div className="bg-zinc-800 pt-3 mb-5">
-			<div className="flex justify-end items-center px-3 gap-3 py-1">
+		<div className="bg-zinc-800 pt-3 mb-8">
+			<div className="flex justify-end items-center px-3 gap-3 py-1 text-white">
 				{language && (
 					<p>
-						langage: <span className="opacity-70">{language}</span>
+						langage: <span className="text-blue-500">{language}</span>
 					</p>
 				)}
 				<CopyButton codeToCopy={code} />

@@ -37,3 +37,13 @@ export function formatDate(datetime: string) {
 
 	return formattedDate;
 }
+
+export function checkIfImageUrl(url: string) {
+	const fileExtension = url.split(".").pop()?.toLowerCase();
+	const imageExtensions = ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "webp", "heic"];
+
+	if (fileExtension && imageExtensions.includes(fileExtension)) {
+		return true;
+	}
+	return false;
+}

@@ -1,6 +1,8 @@
 import { PortableTextComponents } from "@portabletext/react";
 import React from "react";
 import CodeBlocks from "./CodeBlocks";
+import { checkIfImageUrl } from "@/lib/utils";
+import Image from "next/image";
 
 type CodeBlock = {
 	value: { code: string; filename: string; language: string };
@@ -17,26 +19,43 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 	block: {
 		// @ts-ignore
 		h1: ({ children }) => (
-			<h1 className="text-3xl font-semibold mb-3 leading-10"># {children}</h1>
+			<h1 className="text-2xl font-semibold mb-3 leading-10"># {children}</h1>
 		),
 		h2: ({ children }) => (
-			<h1 className="text-xl font-semibold mb-3 mt-3 leading-10"># {children}</h1>
+			<h1 className="text-xl font-semibold mb-3 mt-3 leading-10"> {children}</h1>
 		),
 		h3: ({ children }) => (
-			<h1 className="text-3xl font-semibold mb-3 leading-10"># {children}</h1>
+			<h1 className="text-lg font-semibold mb-3 mt-3 leading-10"># {children}</h1>
+		),
+		normal: ({ children }) => <p className="text-justify mb-3">{children}</p>,
+		blockquote: ({ children }) => (
+			<blockquote className="border-l-[3px] border-l-blue-500  block p-2 mb-3">
+				{children}
+			</blockquote>
 		),
 	},
 
 	marks: {
 		code: ({ children }: { children: any }) => (
-			<pre className="bg-gray-700 p-3 rounded">
+			<pre className="bg-zinc-700 p-3 rounded">
 				<code>{children}</code>
 			</pre>
 		),
-		em: ({ children }) => <em className="text-gray-600 font-semibold">{children}</em>,
-
+		em: ({ children }) => <em className="italic">{children}</em>,
+		strong: ({ children }) => <strong className="font-bold">{children}</strong>,
 		link: ({ value, children }) => {
 			const target = (value?.href || "").startsWith("http") ? "_blank" : undefined;
+			if (checkIfImageUrl(value?.href)) {
+				return (
+					<Image
+						src={value?.href}
+						width={200}
+						height={500}
+						alt={children?.toString() ?? "image d'illustration"}
+						className="w-full h-auto m-auto rounded-lg my-3 lg:max-h-[700px]"
+					/>
+				);
+			}
 			return (
 				<a
 					href={value?.href}
@@ -46,11 +65,23 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 							? "noindex nofollow noopener noreferrer"
 							: ""
 					}
+					className="text-blue-500 underline underline-offset-4"
 				>
 					{children}
 				</a>
 			);
 		},
+	},
+
+	list: {
+		bullet: ({ children }) => <ul className="list-disc mb-4 pl-5">{children}</ul>,
+		number: ({ children }) => <ol className="list-decimal mb-4 pl-5">{children}</ol>,
+	},
+
+	listItem: {
+		bullet: ({ children }) => <li className="mb-2">{children}</li>,
+
+		checkmarks: ({ children }) => <li>✅ {children}</li>,
 	},
 };
 

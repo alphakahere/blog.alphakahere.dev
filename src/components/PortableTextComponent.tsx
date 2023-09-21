@@ -43,6 +43,12 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 		),
 		em: ({ children }) => <em className="italic">{children}</em>,
 		strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+		highlight: ({ children }) => (
+			<span className="border border-blue-200 bg-blue-100 rounded text-dark p-4 mb-5 block">
+				<span>💡</span>
+				{children}
+			</span>
+		),
 		link: ({ value, children }) => {
 			const target = (value?.href || "").startsWith("http") ? "_blank" : undefined;
 			if (checkIfImageUrl(value?.href)) {
@@ -52,7 +58,8 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 						width={200}
 						height={500}
 						alt={children?.toString() ?? "image d'illustration"}
-						className="w-full h-auto m-auto rounded-lg my-3 lg:max-h-[700px]"
+						className="w-auto h-auto m-auto rounded-lg mt-3 mb-5 lg:max-h-[700px]"
+						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 					/>
 				);
 			}

@@ -1,11 +1,19 @@
 import Layout from "@/components/Layout";
+import ListPost from "@/components/ListPost";
 import { client } from "@/lib/client";
 import { Post } from "@/lib/type";
 import React from "react";
 
-const page = ({ posts, post }: { posts: Post[]; post: Post }) => {
-	console.log({ posts, post });
-	return <Layout>index</Layout>;
+const page = ({ posts,slug }: { posts: Post[], slug: string }) => {
+	console.log({ posts });
+	return (
+		<Layout>
+			<h1 className="text-darkText dark:text-white text-xl leading-7 font-bold lg:text-2xl lg:leading-10 mb-5">
+				Liste des tutoriels pour <span className="uppercase text-blue-500">{slug}</span>
+			</h1>
+			<ListPost posts={posts} />
+		</Layout>
+	);
 };
 
 export const getStaticPaths = async () => {
@@ -30,14 +38,11 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
-	const query = `*[_type == "post" && slug.current == '${slug}'][0]{slug, mainImage, title,body,publishedAt,source, demo, tags,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }`;
-	const postsQuery = `*[_type == "post"]{...,'relatedPosts': *[_type == 'post' &amp;&amp; ^.category._ref match category._ref]}`;
-
-	const post = await client.fetch(query);
-	const posts = await client.fetch(postsQuery);
+	const query = `*[_type == "post" && isPublished == true && references(*[_type == "tag" && title == '${slug}']._id)]| order(publishedAt desc){slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }`;
+	const posts = await client.fetch(query);
 
 	return {
-		props: { posts, post },
+		props: { posts,slug },
 	};
 };
 

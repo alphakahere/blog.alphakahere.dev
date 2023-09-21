@@ -7,24 +7,7 @@
 }
 .header {
 	background-image: url("../assets/grid.svg");
-	/* background-image: url("../assets/grid.svg"),linear-gradient(
-		600deg,
-		hsl(226deg 83% 18%) 0%,
-		hsl(232deg 60% 14%) 18%,
-		hsl(245deg 47% 9%) 26%,
-		hsl(233deg 80% 2%) 33%,
-		hsl(233deg 80% 1%) 39%,
-		hsl(233deg 80% 1%) 44%,
-		hsl(0deg 0% 0%) 50%,
-		hsl(271deg 90% 6%) 56%,
-		hsl(259deg 85% 11%) 61%,
-		hsl(247deg 88% 16%) 67%,
-		hsl(255deg 81% 12%) 74%,
-		hsl(263deg 77% 7%) 82%,
-		hsl(218deg 100% 2%) 100%
-	); */
 }
-
 
 /* width */
 html::-webkit-scrollbar {
@@ -42,3 +25,12 @@ html::-webkit-scrollbar-thumb {
 	background: rgb(30 64 175);
 	border-radius: 10px;
 }
+/* .unknown__pt__mark__highlight {
+	background-color: rgb(219 234 254);
+    display: block;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid rgb(219 234 254);
+	color: #2B2C34;
+	margin-bottom: 10px;
+} */

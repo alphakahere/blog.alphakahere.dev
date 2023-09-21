@@ -6,15 +6,14 @@ import { client, urlFor } from "../../lib/client";
 import { Post } from "@/lib/type";
 import { PortableText } from "@portabletext/react";
 import PortableSerializers from "@/components/PortableTextComponent";
-import { FaShare } from "react-icons/fa";
 import { formatDate } from "@/lib/utils";
 import SocialShare from "@/components/SocialShare";
 import Link from "next/link";
+import { Toaster } from "react-hot-toast";
 
 const Page = ({ post }: { post: Post }) => {
 	const { title, mainImage, body, estimatedReadingTime, tags, publishedAt, source, demo } =
 		post;
-	console.log({ post });
 	return (
 		<Layout>
 			<div>
@@ -56,10 +55,7 @@ const Page = ({ post }: { post: Post }) => {
 						<div className="flex items-center gap-4 text-gray-500 dark:text-gray-400">
 							<h5>{estimatedReadingTime} mins</h5>
 
-							<div className="group relative flex justify-center">
-								<button className="flex items-center gap-1">
-									<FaShare /> Partager
-								</button>
+							<div className="relative flex justify-center">
 								<SocialShare title={title} />
 							</div>
 						</div>
@@ -102,6 +98,7 @@ const Page = ({ post }: { post: Post }) => {
 					</div>
 				</div>
 			</div>
+			<Toaster position="bottom-center" />
 		</Layout>
 	);
 };

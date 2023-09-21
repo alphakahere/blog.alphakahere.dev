@@ -5,7 +5,6 @@ import { client } from "../lib/client";
 import { Post } from "@/lib/type";
 
 export default function Home({ posts }: { posts: Post[] }) {
-	console.log({ posts });
 	return (
 		<>
 			<Head>
@@ -26,7 +25,7 @@ export default function Home({ posts }: { posts: Post[] }) {
 
 export const getServerSideProps = async () => {
 	const query =
-		'*[_type == "post"] | order(publishedAt desc){slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }';
+		'*[_type == "post" && isPublished == true] | order(publishedAt desc){slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }';
 	const posts = await client.fetch(query);
 
 	return {

@@ -36,12 +36,12 @@ const PostItem = ({ post, i }: { post: Post; i: number }) => {
 						</div>
 					</div>
 					<div className="mt-3 ">
-						<h3 className="text-lg font-semibold leading-7 text-darkText text-opacity-90 dark:text-white h-14">
-							{title.slice(0, 100)}
+						<h3 className="text-lg font-semibold leading-7 text-darkText text-opacity-90 dark:text-white">
+							{title}
 						</h3>
-						<div className="mt-2 h-20">
+						<div className="mt-2">
 							<p className="text-base text-gray-600 font-normal text-opacity-80 dark:text-gray-300">
-								{except.slice(0, 200)}
+								{except}
 							</p>
 						</div>
 					</div>

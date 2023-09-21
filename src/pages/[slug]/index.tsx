@@ -9,10 +9,12 @@ import PortableSerializers from "@/components/PortableTextComponent";
 import { FaShare } from "react-icons/fa";
 import { formatDate } from "@/lib/utils";
 import SocialShare from "@/components/SocialShare";
+import Link from "next/link";
 
 const Page = ({ post }: { post: Post }) => {
 	const { title, mainImage, body, estimatedReadingTime, tags, publishedAt, source, demo } =
 		post;
+	console.log({ post });
 	return (
 		<Layout>
 			<div>
@@ -23,12 +25,13 @@ const Page = ({ post }: { post: Post }) => {
 						</h1>
 						<ul className="flex flex-wrap space-x-2 justify-center mt-2">
 							{tags?.map((tag, i) => (
-								<li
-									className="text-sm text-gray-500 dark:text-gray-400"
+								<Link
+									href={`/tags/${tag}`}
+									className="text-sm text-gray-500 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-700"
 									key={i}
 								>
 									#{tag}
-								</li>
+								</Link>
 							))}
 						</ul>
 					</div>
@@ -71,22 +74,26 @@ const Page = ({ post }: { post: Post }) => {
 							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 						/>
 						<div className="flex items-center justify-center mb-3 gap-3">
-							<a
-								href={source}
-								className="text-white font-semibold bg-blue-500  px-5 py-2 rounded-lg transition duration-300 ease-in hover:bg-blue-600"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Code
-							</a>
-							<a
-								href={demo}
-								className="text-white font-semibold bg-blue-500  px-5 py-2 rounded-lg transition duration-300 ease-in hover:bg-blue-600"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Demo
-							</a>
+							{source && (
+								<a
+									href={source}
+									className="text-white font-semibold bg-blue-500  px-5 py-2 rounded-lg transition duration-300 ease-in hover:bg-blue-600"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Code
+								</a>
+							)}
+							{demo && (
+								<a
+									href={demo}
+									className="text-white font-semibold bg-blue-500  px-5 py-2 rounded-lg transition duration-300 ease-in hover:bg-blue-600"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Demo
+								</a>
+							)}
 						</div>
 					</div>
 

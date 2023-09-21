@@ -27,7 +27,7 @@ const Layout = ({ children }: Props): JSX.Element => (
 			className={`bg-gray-100 dark:bg-dark ${preahvihear.className}`}
 		>
 			<Header />
-			<main className="overflow-x-hidden app-container  min-h-screen py-14">
+			<main className="overflow-x-hidden app-container  min-h-[86vh] py-14">
 				{children}
 			</main>
 			<Footer />

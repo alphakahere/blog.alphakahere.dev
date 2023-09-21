@@ -10,13 +10,15 @@ import { formatDate } from "@/lib/utils";
 import SocialShare from "@/components/SocialShare";
 import Link from "next/link";
 import { Toaster } from "react-hot-toast";
+import ListPost from "@/components/ListPost";
 
-const Page = ({ post }: { post: Post }) => {
+const Page = ({ posts, post }: { post: Post; posts: Post[] }) => {
 	const { title, mainImage, body, estimatedReadingTime, tags, publishedAt, source, demo } =
 		post;
+	console.log({ posts });
 	return (
 		<Layout>
-			<div>
+			<div className="mb-16">
 				<div className="text-darkText dark:text-white">
 					<div className="mb-3">
 						<h1 className="text-xl lg:text-2xl 2xl:text-3xl text-center mb-2 font-semibold">
@@ -98,6 +100,9 @@ const Page = ({ post }: { post: Post }) => {
 					</div>
 				</div>
 			</div>
+			<div className="border-t border-gray-300 dark:border-gray-900 pt-10">
+				<ListPost posts={posts} />
+			</div>
 			<Toaster position="bottom-center" />
 		</Layout>
 	);
@@ -127,7 +132,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
 	const query = `*[_type == "post" && slug.current == '${slug}'][0]{slug, mainImage, title,body,publishedAt,source, demo, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }`;
-	const postsQuery = '*[_type == "post"]';
+	const postsQuery = `*[_type == "post" && slug.current != '${slug}' && isPublished == true]| order(publishedAt desc){slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }`
 
 	const post = await client.fetch(query);
 	const posts = await client.fetch(postsQuery);

@@ -5,7 +5,7 @@ import { FiClock } from "react-icons/fi";
 import { Post } from "@/lib/type";
 import { urlFor } from "../lib/client";
 
-const PostItem = ({ post, i }: { post: Post; i: number }) => {
+const PostItem = ({ post}: { post: Post; }) => {
 	const { title, mainImage, except, slug, tags, estimatedReadingTime } = post;
 	return (
 		<article className="border bg-slate border-gray-200 hover:border-gray-300 shadow-sm dark:border-gray-700 hover:dark:border-gray-800 rounded-lg transition-all ease-out duration-300">

@@ -36,11 +36,11 @@ const PostItem = ({ post}: { post: Post; }) => {
 						</div>
 					</div>
 					<div className="mt-3 ">
-						<h3 className="text-lg font-semibold leading-7 text-darkText text-opacity-90 dark:text-white">
+						<h3 className="text-lg font-semibold leading-7 text-darkText dark:text-white">
 							{title}
 						</h3>
 						<div className="mt-2">
-							<p className="text-base text-gray-600 font-normal text-opacity-80 dark:text-gray-300">
+							<p className="text-base text-gray-600 font-normal  dark:text-gray-300">
 								{except}
 							</p>
 						</div>

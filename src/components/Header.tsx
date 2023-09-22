@@ -43,7 +43,7 @@ const Header = () => {
 								<div className="mt-10">
 									<a
 										href="mailto:hello@alphakahere.dev"
-										className="text-white font-semibold bg-blue-500  px-5 py-2 rounded-full transition duration-300 ease-in hover:bg-blue-600"
+										className="text-white font-semibold bg-blue-600  px-5 py-2 rounded-full transition duration-300 ease-in hover:bg-blue-700"
 									>
 										Contactez-moi
 									</a>

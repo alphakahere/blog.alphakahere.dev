@@ -69,13 +69,13 @@ const Page = ({ posts, post }: { post: Post; posts: Post[] }) => {
 							alt="project"
 							width={200}
 							height={500}
-							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 33vw"
 						/>
 						<div className="flex items-center justify-center mb-3 gap-3">
 							{source && (
 								<a
 									href={source}
-									className="text-white font-semibold bg-blue-500  px-5 py-2 rounded-lg transition duration-300 ease-in hover:bg-blue-600"
+									className="text-white font-semibold px-5 py-2 rounded-lg transition duration-300 ease-in bg-violet-600 hover:bg-violet-700 dark:bg-blue-600 dark:hover:bg-blue-700"
 									target="_blank"
 									rel="noopener noreferrer"
 								>
@@ -85,7 +85,7 @@ const Page = ({ posts, post }: { post: Post; posts: Post[] }) => {
 							{demo && (
 								<a
 									href={demo}
-									className="text-white font-semibold bg-blue-500  px-5 py-2 rounded-lg transition duration-300 ease-in hover:bg-blue-600"
+									className="text-white font-semibold  px-5 py-2 rounded-lg transition duration-300 ease-in bg-violet-600 hover:bg-violet-700 dark:bg-blue-600 dark:hover:bg-blue-700"
 									target="_blank"
 									rel="noopener noreferrer"
 								>

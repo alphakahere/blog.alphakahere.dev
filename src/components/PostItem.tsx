@@ -8,7 +8,7 @@ import { urlFor } from "../lib/client";
 const PostItem = ({ post}: { post: Post; }) => {
 	const { title, mainImage, except, slug, tags, estimatedReadingTime } = post;
 	return (
-		<article className="border bg-slate border-gray-200 hover:border-gray-300 shadow-sm dark:border-gray-700 hover:dark:border-gray-800 rounded-lg transition-all ease-out duration-300">
+		<article className="border bg-slate border-gray-300 hover:border-gray-400 shadow-sm dark:border-gray-700 hover:dark:border-gray-800 rounded-lg transition-all ease-out duration-300">
 			<Link href={`/${slug.current}`} className="rounded-lg text-dark dark:text-white">
 				<div className="w-full mb-4 relative">
 					<Image

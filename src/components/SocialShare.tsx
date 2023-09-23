@@ -11,7 +11,7 @@ import { RiWhatsappFill } from "react-icons/ri";
 import { useRouter } from "next/router";
 import { BASE_URL } from "@/lib/constants";
 import { FaShare } from "react-icons/fa";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const SocialShare = ({ title }: { title: string }) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -20,6 +20,9 @@ const SocialShare = ({ title }: { title: string }) => {
 	const router = useRouter();
 	const SOCIAL_SHARE_URL = BASE_URL + router.asPath;
 	const quote = `Félicitations à @alphakahere pour cet excellent article sur ${title}. Partageons la connaissance !`;
+
+	const toggle = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
+
 
 	const onCopy = () =>
 		navigator.clipboard.writeText(SOCIAL_SHARE_URL).then(() => {
@@ -34,7 +37,6 @@ const SocialShare = ({ title }: { title: string }) => {
 			toggle();
 		});
 
-	const toggle = useCallback(() => setIsOpen((isOpen) => !isOpen), []);
 
 	useEffect(() => {
 		function handleOutsideClick(event) {

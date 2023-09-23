@@ -1,7 +1,7 @@
 import React from "react";
 import { Highlight, themes } from "prism-react-renderer";
 import CopyButton from "./CopyButton";
-
+// react-syntax-highlighter
 interface Props {
 	language: string;
 	code: string;

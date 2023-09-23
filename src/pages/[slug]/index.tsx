@@ -6,16 +6,19 @@ import { client, urlFor } from "../../lib/client";
 import { Post } from "@/lib/type";
 import { PortableText } from "@portabletext/react";
 import PortableSerializers from "@/components/PortableTextComponent";
-import { FaShare } from "react-icons/fa";
 import { formatDate } from "@/lib/utils";
 import SocialShare from "@/components/SocialShare";
+import Link from "next/link";
+import { Toaster } from "react-hot-toast";
+import ListPost from "@/components/ListPost";
 
-const Page = ({ post }: { post: Post }) => {
+const Page = ({ posts, post }: { post: Post; posts: Post[] }) => {
 	const { title, mainImage, body, estimatedReadingTime, tags, publishedAt, source, demo } =
 		post;
+	console.log({ posts });
 	return (
 		<Layout>
-			<div>
+			<div className="mb-16">
 				<div className="text-darkText dark:text-white">
 					<div className="mb-3">
 						<h1 className="text-xl lg:text-2xl 2xl:text-3xl text-center mb-2 font-semibold">
@@ -23,12 +26,13 @@ const Page = ({ post }: { post: Post }) => {
 						</h1>
 						<ul className="flex flex-wrap space-x-2 justify-center mt-2">
 							{tags?.map((tag, i) => (
-								<li
-									className="text-sm text-gray-500 dark:text-gray-400"
+								<Link
+									href={`/tags/${tag}`}
+									className="text-sm text-gray-500 dark:text-gray-400 dark:hover:text-gray-200 hover:text-gray-700"
 									key={i}
 								>
 									#{tag}
-								</li>
+								</Link>
 							))}
 						</ul>
 					</div>
@@ -53,10 +57,7 @@ const Page = ({ post }: { post: Post }) => {
 						<div className="flex items-center gap-4 text-gray-500 dark:text-gray-400">
 							<h5>{estimatedReadingTime} mins</h5>
 
-							<div className="group relative flex justify-center">
-								<button className="flex items-center gap-1">
-									<FaShare /> Partager
-								</button>
+							<div className="relative flex justify-center">
 								<SocialShare title={title} />
 							</div>
 						</div>
@@ -68,25 +69,29 @@ const Page = ({ post }: { post: Post }) => {
 							alt="project"
 							width={200}
 							height={500}
-							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 33vw"
 						/>
 						<div className="flex items-center justify-center mb-3 gap-3">
-							<a
-								href={source}
-								className="text-white font-semibold bg-blue-500  px-5 py-2 rounded-lg transition duration-300 ease-in hover:bg-blue-600"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Code
-							</a>
-							<a
-								href={demo}
-								className="text-white font-semibold bg-blue-500  px-5 py-2 rounded-lg transition duration-300 ease-in hover:bg-blue-600"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Demo
-							</a>
+							{source && (
+								<a
+									href={source}
+									className="text-white font-semibold px-5 py-2 rounded-lg transition duration-300 ease-in bg-violet-600 hover:bg-violet-700 dark:bg-blue-600 dark:hover:bg-blue-700"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Code
+								</a>
+							)}
+							{demo && (
+								<a
+									href={demo}
+									className="text-white font-semibold  px-5 py-2 rounded-lg transition duration-300 ease-in bg-violet-600 hover:bg-violet-700 dark:bg-blue-600 dark:hover:bg-blue-700"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Demo
+								</a>
+							)}
 						</div>
 					</div>
 
@@ -95,6 +100,10 @@ const Page = ({ post }: { post: Post }) => {
 					</div>
 				</div>
 			</div>
+			<div className="border-t border-gray-300 dark:border-gray-900 pt-10">
+				<ListPost posts={posts} />
+			</div>
+			<Toaster position="bottom-center" />
 		</Layout>
 	);
 };
@@ -123,7 +132,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
 	const query = `*[_type == "post" && slug.current == '${slug}'][0]{slug, mainImage, title,body,publishedAt,source, demo, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }`;
-	const postsQuery = '*[_type == "post"]';
+	const postsQuery = `*[_type == "post" && slug.current != '${slug}' && isPublished == true]| order(publishedAt desc){slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }`
 
 	const post = await client.fetch(query);
 	const posts = await client.fetch(postsQuery);

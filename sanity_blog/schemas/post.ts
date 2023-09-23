@@ -70,6 +70,7 @@ export default {
 			name: "updatedAt",
 			title: "Updated at",
 			type: "datetime",
+			readOnly: true,
 		},
 		{
 			name: "publishedAt",
@@ -77,12 +78,19 @@ export default {
 			type: "datetime",
 		},
 		{
+			name: "isPublished",
+			title: "isPublished",
+			type: "boolean",
+		},
+		{
 			name: "body",
 			title: "Body",
 			type: "blockContent",
 		},
 	],
-
+	initialValue: () => ({
+		updatedAt: new Date().toISOString(),
+	}),
 	preview: {
 		select: {
 			title: "title",

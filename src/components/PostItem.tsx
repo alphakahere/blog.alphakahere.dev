@@ -5,10 +5,10 @@ import { FiClock } from "react-icons/fi";
 import { Post } from "@/lib/type";
 import { urlFor } from "../lib/client";
 
-const PostItem = ({ post, i }: { post: Post; i: number }) => {
+const PostItem = ({ post}: { post: Post; }) => {
 	const { title, mainImage, except, slug, tags, estimatedReadingTime } = post;
 	return (
-		<article className="border bg-slate border-gray-200 hover:border-gray-300 shadow-sm dark:border-gray-700 hover:dark:border-gray-800 rounded-lg transition-all ease-out duration-300">
+		<article className="border bg-slate border-gray-300 hover:border-gray-400 shadow-sm dark:border-gray-700 hover:dark:border-gray-800 rounded-lg transition-all ease-out duration-300">
 			<Link href={`/${slug.current}`} className="rounded-lg text-dark dark:text-white">
 				<div className="w-full mb-4 relative">
 					<Image
@@ -36,12 +36,12 @@ const PostItem = ({ post, i }: { post: Post; i: number }) => {
 						</div>
 					</div>
 					<div className="mt-3 ">
-						<h3 className="text-lg font-semibold leading-7 text-darkText text-opacity-90 dark:text-white h-14">
-							{title.slice(0, 100)}
+						<h3 className="text-lg font-semibold leading-7 text-darkText dark:text-white">
+							{title}
 						</h3>
-						<div className="mt-2 h-20">
-							<p className="text-base text-gray-600 font-normal text-opacity-80 dark:text-gray-300">
-								{except.slice(0, 200)}
+						<div className="mt-2">
+							<p className="text-base text-gray-600 font-normal  dark:text-gray-300">
+								{except}
 							</p>
 						</div>
 					</div>

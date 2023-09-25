@@ -10,8 +10,8 @@ const About = () => {
 						<h3 className="text-base text-darkText dark:text-white font-bold">
 							&#128075; Hi, Je suis Alpha Amadou Diallo
 						</h3>
-						<h1 className="leading-10 font-bold text-2xl md:text-4xl ">
-							<strong className="text-violet-600 dark:text-blue-600">
+						<h1 className="leading-10 font-bold text-2xl md:text-4xl xl:text-5xl">
+							<strong className="text-violet-600 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-r dark:from-blue-500 dark:to-cyan-500">
 								Développeur web à Volkeno
 							</strong>{" "}
 						</h1>

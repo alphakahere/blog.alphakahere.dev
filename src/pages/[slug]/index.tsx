@@ -38,7 +38,7 @@ const Page = ({ posts, post }: { post: Post; posts: Post[] }) => {
 					</div>
 					<div className="flex items-center justify-between mb-3">
 						<div className="flex items-center space-x-3">
-							<div className="w-14 h-14 bg-gradient-to-tr from-sky-300 via-fuchsia-500 to-purple-500 rounded-full">
+							<div className="w-14 h-14 bg-gradient-to-tr from-sky-300 via-fuchsia-500 to-purple-500 dark:from-sky-300 dark:via-blue-500 dark:to-cyan-400 rounded-full">
 								<Image
 									src={Avatar}
 									alt="avatar"

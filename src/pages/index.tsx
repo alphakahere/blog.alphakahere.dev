@@ -16,7 +16,7 @@ export default function Home({ posts }: { posts: Post[] }) {
 
 export const getServerSideProps = async () => {
 	const query =
-		'*[_type == "post" && isPublished == true] | order(publishedAt desc){slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }';
+		'*[_type == "post" && isPublished == true] | order(publishedAt desc){slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ) }';
 	const posts = await client.fetch(query);
 
 	return {

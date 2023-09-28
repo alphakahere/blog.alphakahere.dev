@@ -2,6 +2,7 @@ import ListPost from "@/components/ListPost";
 import Layout from "@/components/Layout";
 import { client } from "../lib/client";
 import { Post } from "@/lib/type";
+import { averageReadingSpeed } from "@/lib/constants";
 
 export default function Home({ posts }: { posts: Post[] }) {
 	return (
@@ -15,10 +16,8 @@ export default function Home({ posts }: { posts: Post[] }) {
 }
 
 export const getServerSideProps = async () => {
-	const query =
-		'*[_type == "post" && isPublished == true] | order(publishedAt desc){slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }';
+	const query = `*[_type == "post" && isPublished == true] | order(publishedAt desc){slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / ${averageReadingSpeed} ) }`;
 	const posts = await client.fetch(query);
-
 	return {
 		props: { posts },
 	};

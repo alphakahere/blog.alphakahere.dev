@@ -11,13 +11,17 @@ import SocialShare from "@/components/SocialShare";
 import Link from "next/link";
 import { Toaster } from "react-hot-toast";
 import ListPost from "@/components/ListPost";
+import Head from "next/head";
+import { averageReadingSpeed } from "@/lib/constants";
 
-const Page = ({ posts, post }: { post: Post; posts: Post[] }) => {
-	const { title, mainImage, body, estimatedReadingTime, tags, publishedAt, source, demo } =
-		post;
-	console.log({ posts });
+const Page = ({ post }: { post: Post & { related: Post[] } }) => {
+	const { title, mainImage, body, estimatedReadingTime, tags, publishedAt, source, demo } = post;
+	const { related } = post;
 	return (
 		<Layout>
+			<Head>
+				<title>{post.title}</title>
+			</Head>
 			<div className="mb-16">
 				<div className="text-darkText dark:text-white">
 					<div className="mb-3">
@@ -101,7 +105,7 @@ const Page = ({ posts, post }: { post: Post; posts: Post[] }) => {
 				</div>
 			</div>
 			<div className="border-t border-gray-300 dark:border-gray-900 pt-10">
-				<ListPost posts={posts} />
+				<ListPost posts={related} />
 			</div>
 			<Toaster position="bottom-center" />
 		</Layout>
@@ -131,14 +135,11 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
-	const query = `*[_type == "post" && slug.current == '${slug}'][0]{slug, mainImage, title,body,publishedAt,source, demo, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }`;
-	const postsQuery = `*[_type == "post" && slug.current != '${slug}' && isPublished == true]| order(publishedAt desc){slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 300 ) }`
-
+	const query = `*[_type == "post" && slug.current == '${slug}'][0]{slug, mainImage, title,body,publishedAt,source, demo, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / ${averageReadingSpeed} ),"related": *[_type == "post"  && slug.current != '${slug}' && isPublished == true && count(tags[@._ref in ^.^.tags[]._ref]) > 0]| order(publishedAt desc)[0..2]{slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ) }}`;
 	const post = await client.fetch(query);
-	const posts = await client.fetch(postsQuery);
 
 	return {
-		props: { posts, post },
+		props: { post },
 	};
 };
 

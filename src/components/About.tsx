@@ -1,5 +1,6 @@
 import React from "react";
 import SocialConnect from "./SocialConnect";
+import { data } from "../../data";
 
 const About = () => {
 	return (
@@ -21,12 +22,7 @@ const About = () => {
 								également de nocode.
 							</p>
 							<p className="text-darkText dark:text-gray-100">
-								Bienvenue sur mon blog, où je vous partage mes
-								expériences, mes astuces, des tutoriels, des
-								articles et également des projets sur le
-								développement web mais le plus souvent nous
-								aborderons des sujets liés à React et à son
-								écosystème.
+								{data.about}
 							</p>
 						</div>
 					</div>

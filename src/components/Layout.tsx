@@ -5,6 +5,7 @@ import { Preahvihear } from "next/font/google";
 import Header from "./Header";
 import Footer from "./Footer";
 import Head from "next/head";
+import { data } from "../../data";
 
 const preahvihear = Preahvihear({ subsets: ["latin"], weight: ["400"] });
 
@@ -24,10 +25,7 @@ const Layout = ({ children }: Props): JSX.Element => (
 			<title>Blog alphakahere.dev</title>
 			<meta
 				name="description"
-				content="Bienvenue sur mon blog, où je vous partage mes
-								expériences, mes astuces, des tutoriels, des
-								articles et également des projets sur le
-								développement web"
+				content={data.about}
 			/>
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
 			<link rel="icon" href="/favicon.ico" />

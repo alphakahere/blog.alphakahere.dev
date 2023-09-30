@@ -18,4 +18,5 @@ export const data = {
 			icon: BsTwitter,
 		},
 	],
+	about: "Bienvenue sur mon blog, un espace où je partage mes expériences, astuces,  tutoriels, articles et également des projets sur le développement web en général. En particulier, nous aborderons le plus souvent des sujets liés à React et à son écosystème."
 };

@@ -43,6 +43,8 @@ export default function Document() {
 					name="twitter:card"
 					content="summary_large_image"
 				/>
+				<meta property="og:image:alt" content="Blog aldev banner" />
+				<meta property="twitter:image:alt" content="Blog aldev banner" />
 			</Head>
 			<body>
 				<Main />

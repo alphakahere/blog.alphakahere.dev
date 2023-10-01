@@ -23,12 +23,21 @@ const Layout = ({ children }: Props): JSX.Element => (
 	<>
 		<Head>
 			<title>Blog alphakahere.dev</title>
-			<meta
-				name="description"
-				content={data.about}
-			/>
+			<meta name="description" content={data.about} />
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
 			<link rel="icon" href="/favicon.ico" />
+			<meta
+				property="og:image"
+				name="og:image"
+				content="https://i.imgur.com/eYYY31Z.png"
+			/>
+			<meta
+				property="twitter:image"
+				name="twitter:image"
+				content="https://i.imgur.com/eYYY31Z.png"
+			/>
+			<meta property="og:image:alt" content="Blog aldev banner" />
+			<meta property="twitter:image:alt" content="Blog aldev banner" />
 		</Head>
 		<motion.div
 			initial="hidden"

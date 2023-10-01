@@ -14,15 +14,20 @@ export default function Document() {
 					content="Blog d'un développeur web passionné"
 				/>
 				<meta
-					property="og:image"
-					name="og:image"
-					content="https://i.imgur.com/eYYY31Z.png"
-				/>
-				<meta
 					property="og:description"
 					name="og:description"
 					content="Bienvenue sur mon blog, un espace où je partage mes expériences, astuces,  tutoriels, articles et également des projets sur le développement web en général"
 				/>
+				<meta
+					property="og:image"
+					name="og:image"
+					content="https://i.imgur.com/eYYY31Z.png"
+				/>
+				<meta property="og:image:alt" content="Blog aldev banner" />
+				<meta property="og:image:type" content="png" />
+				<meta property="og:image:width" content="1200" />
+				<meta property="og:image:height" content="630" />
+
 				<meta
 					name="twitter:title"
 					property="twitter:title"
@@ -43,8 +48,10 @@ export default function Document() {
 					name="twitter:card"
 					content="summary_large_image"
 				/>
-				<meta property="og:image:alt" content="Blog aldev banner" />
 				<meta property="twitter:image:alt" content="Blog aldev banner" />
+				<meta property="twitter:image:type" content="png" />
+				<meta property="twitter:image:width" content="1200" />
+				<meta property="twitter:image:height" content="630" />
 			</Head>
 			<body>
 				<Main />

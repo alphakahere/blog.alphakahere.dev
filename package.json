@@ -10,11 +10,11 @@
 	},
 	"dependencies": {
 		"@portabletext/react": "^3.0.7",
-		"@sanity/client": "^6.4.12",
 		"@sanity/image-url": "^1.0.2",
 		"@vercel/analytics": "^1.0.2",
 		"eslint": "8.35.0",
 		"next": "^13.5.5",
+		"next-sanity": "^5.5.8",
 		"next-themes": "^0.2.1",
 		"prism-react-renderer": "^2.0.6",
 		"react": "^18.2.0",

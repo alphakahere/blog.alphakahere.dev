@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiClock } from "react-icons/fi";
 import { Post } from "@/lib/type";
-import { urlFor } from "../lib/client";
+import { urlFor } from "@/lib/client";
 
 const PostItem = ({ post}: { post: Post; }) => {
 	const { title, mainImage, except, slug, tags, estimatedReadingTime } = post;

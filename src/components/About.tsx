@@ -27,7 +27,6 @@ const About = () => {
 						</div>
 					</div>
 					<div className="flex flex-col items-center">
-						{/* Socials medias */}
 						<SocialConnect size={24} />
 						<div className="mt-10">
 							<a

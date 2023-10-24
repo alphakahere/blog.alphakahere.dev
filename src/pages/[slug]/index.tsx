@@ -15,7 +15,16 @@ import Head from "next/head";
 import { averageReadingSpeed } from "@/lib/constants";
 
 const Page = ({ post }: { post: Post & { related: Post[] } }) => {
-	const { title, mainImage, body, estimatedReadingTime, tags, publishedAt, source, demo } = post;
+	const {
+		title,
+		mainImage,
+		body,
+		estimatedReadingTime,
+		tags,
+		publishedAt,
+		source,
+		demo,
+	} = post;
 	const { related } = post;
 	return (
 		<Layout>
@@ -100,7 +109,10 @@ const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 					</div>
 
 					<div className="text-lg leading-8 mb-2 font-normal text-darkText dark:text-cGray">
-						<PortableText value={body} components={PortableSerializers} />
+						<PortableText
+							value={body}
+							components={PortableSerializers}
+						/>
 					</div>
 				</div>
 			</div>
@@ -134,7 +146,11 @@ export const getStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
+export const getStaticProps = async ({
+	params: { slug },
+}: {
+	params: { slug: string };
+}) => {
 	const query = `*[_type == "post" && slug.current == '${slug}'][0]{slug, mainImage, title,body,publishedAt,source, demo, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / ${averageReadingSpeed} ),"related": *[_type == "post"  && slug.current != '${slug}' && isPublished == true && count(tags[@._ref in ^.^.tags[]._ref]) > 0]| order(publishedAt desc)[0..2]{slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ) }}`;
 	const post = await client.fetch(query);
 

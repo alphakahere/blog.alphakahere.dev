@@ -1,8 +1,8 @@
 import ListPost from "@/components/ListPost";
 import Layout from "@/components/Layout";
-import { client } from "../lib/client";
 import { Post } from "@/lib/type";
 import { averageReadingSpeed } from "@/lib/constants";
+import { client } from "@/lib/client";
 
 export default function Home({ posts }: { posts: Post[] }) {
 	return (

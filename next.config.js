@@ -3,15 +3,10 @@
 const nextConfig = {
 	reactStrictMode: true,
 	env: {
-		token: process.env.NEXT_PUBLIC_SANITY_TOKEN
+		token: process.env.NEXT_PUBLIC_SANITY_TOKEN,
 	},
 	images: {
 		remotePatterns: [
-			{
-				protocol: "https",
-				hostname: "picsum.photos",
-				pathname: "/**",
-			},
 			{
 				protocol: "https",
 				hostname: "cdn.sanity.io",

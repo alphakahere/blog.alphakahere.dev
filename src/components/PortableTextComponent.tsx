@@ -1,7 +1,7 @@
 import { PortableTextComponents } from "@portabletext/react";
 import React from "react";
 import CodeBlocks from "./CodeBlocks";
-import { checkIfImageUrl } from "@/lib/utils";
+import { checkIfImageUrl, checkIfLinkContainsEmbed } from "@/lib/utils";
 import Image from "next/image";
 
 type CodeBlock = {
@@ -19,15 +19,24 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 	block: {
 		// @ts-ignore
 		h1: ({ children }) => (
-			<h1 className="text-2xl font-semibold mb-3 leading-10"># {children}</h1>
+			<h1 className="text-2xl font-semibold mb-3 leading-10">
+				# {children}
+			</h1>
 		),
 		h2: ({ children }) => (
-			<h1 className="text-xl font-semibold mb-3 mt-3 leading-10"> {children}</h1>
+			<h1 className="text-xl font-semibold mb-3 mt-3 leading-10">
+				{" "}
+				{children}
+			</h1>
 		),
 		h3: ({ children }) => (
-			<h1 className="text-lg font-semibold mb-3 mt-3 leading-10"># {children}</h1>
+			<h1 className="text-lg font-semibold mb-3 mt-3 leading-10">
+				# {children}
+			</h1>
 		),
-		normal: ({ children }) => <p className="text-justify mb-3">{children}</p>,
+		normal: ({ children }) => (
+			<p className="text-justify mb-3">{children}</p>
+		),
 		blockquote: ({ children }) => (
 			<blockquote className="border-l-[4px] border-l-blue-500  block p-2 mb-3">
 				{children}
@@ -42,7 +51,9 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 			</pre>
 		),
 		em: ({ children }) => <em className="italic">{children}</em>,
-		strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+		strong: ({ children }) => (
+			<strong className="font-bold">{children}</strong>
+		),
 		highlight: ({ children }) => (
 			<span className="border border-blue-200 bg-blue-100 rounded text-dark p-4 mb-5 block">
 				<span>💡</span>
@@ -50,17 +61,35 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 			</span>
 		),
 		link: ({ value, children }) => {
-			const target = (value?.href || "").startsWith("http") ? "_blank" : undefined;
+			const target = (value?.href || "").startsWith("http")
+				? "_blank"
+				: undefined;
 			if (checkIfImageUrl(value?.href)) {
 				return (
 					<Image
 						src={value?.href}
 						width={200}
 						height={500}
-						alt={children?.toString() ?? "image d'illustration"}
+						alt={
+							children?.toString() ??
+							"image d'illustration"
+						}
 						className="w-auto h-auto m-auto rounded-lg mt-3 mb-5 lg:max-h-[700px]"
 						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 					/>
+				);
+			}
+			if (checkIfLinkContainsEmbed(value?.href)) {
+				return (
+					<div className="my-8">
+						<iframe
+							src={value?.href}
+							width="600"
+							height="600"
+							allowFullScreen
+							className="w-full max-w-screen-xl m-auto"
+						/>
+					</div>
 				);
 			}
 			return (
@@ -81,8 +110,12 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 	},
 
 	list: {
-		bullet: ({ children }) => <ul className="list-disc mb-4 pl-5">{children}</ul>,
-		number: ({ children }) => <ol className="list-decimal mb-4 pl-5">{children}</ol>,
+		bullet: ({ children }) => (
+			<ul className="list-disc mb-4 pl-5">{children}</ul>
+		),
+		number: ({ children }) => (
+			<ol className="list-decimal mb-4 pl-5">{children}</ol>
+		),
 	},
 
 	listItem: {

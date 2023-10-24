@@ -33,17 +33,33 @@ export function formatDate(datetime: string) {
 		day: "numeric",
 	};
 
-	const formattedDate = new Intl.DateTimeFormat("fr-FR", options).format(date);
+	const formattedDate = new Intl.DateTimeFormat("fr-FR", options).format(
+		date
+	);
 
 	return formattedDate;
 }
 
 export function checkIfImageUrl(url: string) {
 	const fileExtension = url.split(".").pop()?.toLowerCase();
-	const imageExtensions = ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "webp", "heic"];
+	const imageExtensions = [
+		"jpg",
+		"jpeg",
+		"png",
+		"gif",
+		"bmp",
+		"tiff",
+		"webp",
+		"heic",
+	];
 
 	if (fileExtension && imageExtensions.includes(fileExtension)) {
 		return true;
 	}
 	return false;
+}
+
+export function checkIfLinkContainsEmbed(link: string): boolean {
+	const pattern = /embed/;
+	return pattern.test(link);
 }

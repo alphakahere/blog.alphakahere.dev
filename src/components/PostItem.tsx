@@ -5,14 +5,18 @@ import { FiClock } from "react-icons/fi";
 import { Post } from "@/lib/type";
 import { urlFor } from "@/lib/client";
 
-const PostItem = ({ post}: { post: Post; }) => {
-	const { title, mainImage, except, slug, tags, estimatedReadingTime } = post;
+const PostItem = ({ post }: { post: Post }) => {
+	const { title, mainImage, except, slug, tags, estimatedReadingTime } =
+		post;
 	return (
 		<article className="border bg-slate border-gray-300 hover:border-gray-400 shadow-sm dark:border-gray-700 hover:dark:border-gray-800 rounded-lg transition-all ease-out duration-300">
-			<Link href={`/${slug.current}`} className="rounded-lg text-dark dark:text-white">
+			<Link
+				href={`/${slug.current}`}
+				className="rounded-lg text-dark dark:text-white"
+			>
 				<div className="w-full mb-4 relative">
 					<Image
-						className="rounded-t-lg w-full object-cover"
+						className="rounded-t-lg w-full object-cover max-h-52"
 						src={urlFor(mainImage).url()}
 						alt={title}
 						width={200}
@@ -32,7 +36,9 @@ const PostItem = ({ post}: { post: Post; }) => {
 						</ul>
 						<div className="flex items-center gap-2">
 							<FiClock />
-							<span>{estimatedReadingTime} mins</span>
+							<span>
+								{estimatedReadingTime} mins
+							</span>
 						</div>
 					</div>
 					<div className="mt-3 ">

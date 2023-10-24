@@ -12,12 +12,6 @@ type Props = {
 	children: ReactNode;
 };
 
-const variants = {
-	hidden: { opacity: 0.9 },
-	enter: { opacity: 1 },
-	exit: { opacity: 0.9 },
-};
-
 const Layout = ({ children }: Props): JSX.Element => (
 	<>
 		<Head>

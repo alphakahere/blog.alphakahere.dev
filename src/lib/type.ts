@@ -13,6 +13,6 @@ export interface Post {
 	tags: string[];
 	estimatedReadingTime: number;
 	_createdAt: string;
-	_updatedAt: string;
+	updatedAt: string;
 	publishedAt: string;
 }

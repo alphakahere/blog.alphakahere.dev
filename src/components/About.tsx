@@ -9,7 +9,8 @@ const About = () => {
 				<div className="flex flex-col lg:w-2/3">
 					<div className="flex flex-col space-y-6 mb-10 items-center text-center">
 						<h3 className="text-base text-darkText dark:text-white font-bold">
-							&#128075; Hi, Je suis Alpha Amadou Diallo
+							&#128075; Hi, Je suis Alpha Amadou
+							Diallo
 						</h3>
 						<h1 className="leading-10 font-bold text-2xl md:text-4xl xl:text-5xl">
 							<strong className="text-violet-600 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-r dark:from-blue-500 dark:to-cyan-500">
@@ -18,8 +19,8 @@ const About = () => {
 						</h1>
 						<div className="text-base font-normal leading-7 lg:text-lg lg:leading-8">
 							<p className="text-darkText dark:text-gray-100 mb-2">
-								Passionné de code, de design, de partage et
-								également de nocode.
+								Passionné de code, de design, de
+								partage et également de nocode.
 							</p>
 							<p className="text-darkText dark:text-gray-100">
 								{data.about}

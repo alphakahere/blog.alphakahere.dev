@@ -2,6 +2,7 @@
 import React from "react";
 import { useTheme } from "next-themes";
 import { BsMoonFill, BsSun } from "react-icons/bs";
+
 const ToggleModeButton = () => {
 	const { systemTheme, theme, setTheme } = useTheme();
 	const currentTheme = theme === "system" ? systemTheme : theme;

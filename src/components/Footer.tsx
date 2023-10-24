@@ -11,8 +11,12 @@ const Footer = () => {
 				<SocialConnect size={20} />
 				<div className="flex items-center gap-1">
 					<p>Développé avec passion</p>
-					<BsFillHeartFill className="inline-block text-pink-600" /> par
-					<a href="" className="hover:underline underline-offset-4">
+					<BsFillHeartFill className="inline-block text-pink-600" />{" "}
+					par
+					<a
+						href=""
+						className="hover:underline underline-offset-4"
+					>
 						alphakahere
 					</a>
 				</div>

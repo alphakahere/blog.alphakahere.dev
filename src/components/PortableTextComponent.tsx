@@ -24,15 +24,15 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 			</h1>
 		),
 		h2: ({ children }) => (
-			<h1 className="text-xl font-semibold mb-3 mt-3 leading-10">
+			<h2 className="text-xl font-semibold mb-3 mt-3 leading-10">
 				{" "}
 				{children}
-			</h1>
+			</h2>
 		),
 		h3: ({ children }) => (
-			<h1 className="text-lg font-semibold mb-3 mt-3 leading-10">
+			<h3 className="text-lg font-semibold mb-3 mt-3 leading-10">
 				# {children}
-			</h1>
+			</h3>
 		),
 		normal: ({ children }) => (
 			<p className="text-justify mb-3">{children}</p>

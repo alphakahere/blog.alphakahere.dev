@@ -12,7 +12,8 @@ import Link from "next/link";
 import { Toaster } from "react-hot-toast";
 import ListPost from "@/components/ListPost";
 import Head from "next/head";
-import { averageReadingSpeed } from "@/lib/constants";
+import { BASE_URL, averageReadingSpeed } from "@/lib/constants";
+import { useRouter } from "next/router";
 
 const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 	const {
@@ -24,12 +25,30 @@ const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 		publishedAt,
 		source,
 		demo,
+		except,
 	} = post;
 	const { related } = post;
+	const router = useRouter();
+	const ogUrl = BASE_URL + router.asPath;
 	return (
 		<Layout>
 			<Head>
-				<title>{post.title}</title>
+				<title>{title}</title>
+				<meta property="og:title" content={title} />
+				<meta property="og:description" content={except} />
+				<meta
+					property="og:image"
+					content={urlFor(mainImage).url()}
+				/>
+				<meta property="og:url" content={ogUrl} />
+				<meta property="twitter:title" content={title} />
+				<meta property="twitter:description" content={except} />
+				<meta
+					property="twitter:image"
+					name="twitter:image"
+					content={urlFor(mainImage).url()}
+				/>
+				<meta property="og:type" content="article" />
 			</Head>
 			<div className="mb-16">
 				<div className="text-darkText dark:text-white">
@@ -151,7 +170,7 @@ export const getStaticProps = async ({
 }: {
 	params: { slug: string };
 }) => {
-	const query = `*[_type == "post" && slug.current == '${slug}'][0]{slug, mainImage, title,body,publishedAt,source, demo, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / ${averageReadingSpeed} ),"related": *[_type == "post"  && slug.current != '${slug}' && isPublished == true && count(tags[@._ref in ^.^.tags[]._ref]) > 0]| order(publishedAt desc)[0..2]{slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ) }}`;
+	const query = `*[_type == "post" && slug.current == '${slug}'][0]{slug,except, mainImage, title,body,publishedAt,source, demo, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / ${averageReadingSpeed} ),"related": *[_type == "post"  && slug.current != '${slug}' && isPublished == true && count(tags[@._ref in ^.^.tags[]._ref]) > 0]| order(publishedAt desc)[0..2]{slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ) }}`;
 	const post = await client.fetch(query);
 
 	return {

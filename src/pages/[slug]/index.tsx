@@ -14,6 +14,7 @@ import ListPost from "@/components/ListPost";
 import Head from "next/head";
 import { BASE_URL, averageReadingSpeed } from "@/lib/constants";
 import { useRouter } from "next/router";
+import DisqusComments from "@/components/DisqusComments";
 
 const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 	const {
@@ -26,6 +27,7 @@ const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 		source,
 		demo,
 		except,
+		slug,
 	} = post;
 	const { related } = post;
 	const router = useRouter();
@@ -134,6 +136,12 @@ const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 						/>
 					</div>
 				</div>
+			</div>
+			<div className="border-t border-gray-300 dark:border-gray-900 py-5">
+				<DisqusComments
+					title={title}
+					identifier={slug.current}
+				/>
 			</div>
 			<div className="border-t border-gray-300 dark:border-gray-900 pt-10">
 				<ListPost posts={related} />

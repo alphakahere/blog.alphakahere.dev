@@ -1,2 +1,2 @@
-export const BASE_URL = "blog.alphakahere.dev";
-export const averageReadingSpeed = 180
+export const BASE_URL = "https://blog.alphakahere.dev/";
+export const averageReadingSpeed = 180;

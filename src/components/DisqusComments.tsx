@@ -8,11 +8,15 @@ const DisqusComments = ({
 	identifier: string;
 	title: string;
 }) => {
-	const disqusShortname = "VOTRE_SHORTNAME_DISQUS";
+	const disqusShortname = "blog-alphakahere-dev";
 	const disqusConfig = {
 		url: BASE_URL,
 		identifier,
 		title,
+		sso: {
+			width: "800",
+			height: "200",
+		},
 	};
 
 	return (

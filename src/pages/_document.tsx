@@ -4,7 +4,7 @@ export default function Document() {
 	return (
 		<Html lang="fr">
 			<Head>
-				<meta property="og:type" content="website" />
+				{/* <meta property="og:type" content="website" />
 				<meta property="og:locale" content="fr_FR" />
 				<meta property="og:url" content="https://blog.alphakahere.dev/" />
 				<meta property="og:site_name" content="blog.alphakahere.dev" />
@@ -51,7 +51,7 @@ export default function Document() {
 				<meta property="twitter:image:alt" content="Blog aldev banner" />
 				<meta property="twitter:image:type" content="png" />
 				<meta property="twitter:image:width" content="1200" />
-				<meta property="twitter:image:height" content="630" />
+				<meta property="twitter:image:height" content="630" /> */}
 			</Head>
 			<body>
 				<Main />

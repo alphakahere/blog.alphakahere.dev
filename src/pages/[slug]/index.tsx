@@ -137,11 +137,8 @@ const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 					</div>
 				</div>
 			</div>
-			{/* <div className="border-t border-gray-300 dark:border-gray-900 py-5">
-				<DisqusComments
-					title={title}
-					identifier={slug.current}
-				/>
+			{/* <div className="border-t text-black border-gray-300 dark:border-gray-900 py-5">
+				<DisqusComments title={title} identifier={slug.current} />
 			</div> */}
 			<div className="border-t border-gray-300 dark:border-gray-900 pt-10">
 				<ListPost posts={related} />

@@ -1,4 +1,5 @@
-import { CommentFormData } from "@/lib/type";
+"use client";
+import { Comment, CommentFormData } from "@/lib/type";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,6 +7,7 @@ import * as yup from "yup";
 import { client } from "@/lib/client";
 import { v4 as uuidv4 } from "uuid";
 import toast from "react-hot-toast";
+import { formatDate } from "@/lib/utils";
 
 function CommentForm({ postId }: { postId: string }) {
 	const validationSchema = yup.object().shape({
@@ -18,13 +20,25 @@ function CommentForm({ postId }: { postId: string }) {
 		formState: { errors },
 		clearErrors,
 		reset,
+		setValue,
 	} = useForm<CommentFormData>({
 		resolver: yupResolver(validationSchema),
 	});
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			const userName = window.localStorage.getItem("userName");
+			if (userName) setValue("name", userName);
+		}
+	}, []);
+
 	const onSubmit = async (data: CommentFormData) => {
 		const { remember_me, ...rest } = data;
+		console.log({ remember_me });
+		if (remember_me) {
+			window.localStorage.setItem("userName", rest.name);
+		}
 		const doc = {
 			_type: "comment",
 			_id: uuidv4(),
@@ -100,11 +114,31 @@ function CommentForm({ postId }: { postId: string }) {
 	);
 }
 
-const Comments = ({ postId }: { postId: string }) => {
+const Comments = ({
+	postId,
+	comments,
+}: {
+	postId: string;
+	comments: Comment[];
+}) => {
 	return (
 		<section className="border-t border-gray-300 dark:border-gray-900 pt-10 mb-10">
 			<h3 className="text-2xl mb-3 font-medium">Commentaires</h3>
 			<CommentForm postId={postId} />
+			<div className="">
+				{comments.map((item) => (
+					<div key={item._id} className="border-b py-2">
+						<div className="flex items-center gap-2">
+							<h5>{item.name}</h5>
+							<p>
+								le{" "}
+								{formatDate(item?._createdAt)}
+							</p>
+						</div>
+						<p className="pl-3">{item.message}</p>
+					</div>
+				))}
+			</div>
 		</section>
 	);
 };

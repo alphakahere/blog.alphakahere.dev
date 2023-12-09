@@ -5,6 +5,9 @@
 .app-container {
 	@apply container mx-auto max-w-screen-2xl  px-3 md:px-6 lg:px-10 2xl:px-16;
 }
+.button {
+	@apply text-white font-semibold  px-5 py-2 rounded-lg transition duration-300 ease-in bg-violet-600 hover:bg-violet-700 dark:bg-blue-600 dark:hover:bg-blue-700;
+}
 .header {
 	background-image: url("../assets/grid.svg");
 }

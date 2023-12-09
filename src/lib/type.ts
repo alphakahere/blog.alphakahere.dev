@@ -16,3 +16,12 @@ export interface Post {
 	updatedAt: string;
 	publishedAt: string;
 }
+
+export interface Comment {
+	_id: string;
+	name: string;
+	message: string;
+	_createdAt: string;
+	remember_me: string;
+}
+export type CommentFormData = Partial<Comment>;

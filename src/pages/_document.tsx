@@ -4,10 +4,16 @@ export default function Document() {
 	return (
 		<Html lang="fr">
 			<Head>
-				{/* <meta property="og:type" content="website" />
+				<meta property="og:type" content="website" />
 				<meta property="og:locale" content="fr_FR" />
-				<meta property="og:url" content="https://blog.alphakahere.dev/" />
-				<meta property="og:site_name" content="blog.alphakahere.dev" />
+				<meta
+					property="og:url"
+					content="https://blog.alphakahere.dev/"
+				/>
+				<meta
+					property="og:site_name"
+					content="blog.alphakahere.dev"
+				/>
 				<meta
 					property="og:title"
 					name="og:title"
@@ -23,7 +29,10 @@ export default function Document() {
 					name="og:image"
 					content="https://i.imgur.com/eYYY31Z.png"
 				/>
-				<meta property="og:image:alt" content="Blog aldev banner" />
+				<meta
+					property="og:image:alt"
+					content="Blog aldev banner"
+				/>
 				<meta property="og:image:type" content="png" />
 				<meta property="og:image:width" content="1200" />
 				<meta property="og:image:height" content="630" />
@@ -48,10 +57,13 @@ export default function Document() {
 					name="twitter:card"
 					content="summary_large_image"
 				/>
-				<meta property="twitter:image:alt" content="Blog aldev banner" />
+				<meta
+					property="twitter:image:alt"
+					content="Blog aldev banner"
+				/>
 				<meta property="twitter:image:type" content="png" />
 				<meta property="twitter:image:width" content="1200" />
-				<meta property="twitter:image:height" content="630" /> */}
+				<meta property="twitter:image:height" content="630" />
 			</Head>
 			<body>
 				<Main />

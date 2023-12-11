@@ -9,7 +9,13 @@ import { v4 as uuidv4 } from "uuid";
 import toast from "react-hot-toast";
 import { formatDate } from "@/lib/utils";
 
-function CommentForm({ postId }: { postId: string }) {
+function CommentForm({
+	postId,
+	fetchComments,
+}: {
+	postId: string;
+	fetchComments: () => void;
+}) {
 	const validationSchema = yup.object().shape({
 		name: yup.string().required("Ce champ est obligatoire"),
 		message: yup.string().required("Ce champ est obligatoire"),
@@ -19,7 +25,6 @@ function CommentForm({ postId }: { postId: string }) {
 		handleSubmit,
 		formState: { errors },
 		clearErrors,
-		reset,
 		setValue,
 	} = useForm<CommentFormData>({
 		resolver: yupResolver(validationSchema),
@@ -31,11 +36,10 @@ function CommentForm({ postId }: { postId: string }) {
 			const userName = window.localStorage.getItem("userName");
 			if (userName) setValue("name", userName);
 		}
-	}, []);
+	}, [setValue]);
 
 	const onSubmit = async (data: CommentFormData) => {
 		const { remember_me, ...rest } = data;
-		console.log({ remember_me });
 		if (remember_me) {
 			window.localStorage.setItem("userName", rest.name);
 		}
@@ -49,7 +53,8 @@ function CommentForm({ postId }: { postId: string }) {
 			setIsSubmitting(true);
 			await client.create(doc);
 			toast.success("Envoyé avec succès !");
-			reset();
+			fetchComments();
+			setValue("message", "");
 		} catch (error) {
 			console.error("Error submitting comment:", error);
 			toast.error("Une erreur a survenue lors de la soumission !");
@@ -114,28 +119,34 @@ function CommentForm({ postId }: { postId: string }) {
 	);
 }
 
-const Comments = ({
-	postId,
-	comments,
-}: {
+const Comments = (props: {
 	postId: string;
 	comments: Comment[];
+	fetchComments: () => void;
 }) => {
+	const { postId, comments, fetchComments } = props;
+	useEffect(() => {
+		fetchComments();
+	}, []);
 	return (
-		<section className="border-t border-gray-300 dark:border-gray-900 pt-10 mb-10">
+		<section className="dark:border-gray-900 pt-8 mb-10 bg-gray-100 dark:bg-zinc-800 p-3 rounded-lg">
 			<h3 className="text-2xl mb-3 font-medium">Commentaires</h3>
-			<CommentForm postId={postId} />
+			<CommentForm postId={postId} fetchComments={fetchComments} />
 			<div className="">
 				{comments.map((item) => (
-					<div key={item._id} className="border-b py-2">
+					<div key={item._id} className="mb-3">
 						<div className="flex items-center gap-2">
-							<h5>{item.name}</h5>
-							<p>
+							<h5 className="text-blue-500 font-medium text-base">
+								{item.name}
+							</h5>
+							<p className="text-gray-600 dark:text-gray-300 text-sm">
 								le{" "}
 								{formatDate(item?._createdAt)}
 							</p>
 						</div>
-						<p className="pl-3">{item.message}</p>
+						<p className="pl-1 text-gray-600  dark:text-gray-300">
+							{item.message}
+						</p>
 					</div>
 				))}
 			</div>

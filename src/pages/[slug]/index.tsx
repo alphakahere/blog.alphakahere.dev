@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "../../assets/avatar.png";
 import Layout from "@/components/Layout";
 import { client, urlFor } from "../../lib/client";
@@ -18,10 +18,9 @@ import Comments from "@/components/Comments";
 
 type Props = {
 	post: Post & { related: Post[] };
-	comments: Comment[];
 };
 
-const Page = ({ post, comments }: Props) => {
+const Page = ({ post }: Props) => {
 	const {
 		title,
 		mainImage,
@@ -37,7 +36,20 @@ const Page = ({ post, comments }: Props) => {
 	const { related } = post;
 	const router = useRouter();
 	const ogUrl = BASE_URL + router.asPath;
-	console.log({ post, comments });
+	const [comments, setComments] = useState([]);
+	const fetchComments = async () => {
+		const commentsQuery = `*[_type == "comment" && post._ref == '${post._id}'] | order(_createdAt desc) {
+		  _id,
+		  name,
+		  message,
+		  _createdAt
+		}`;
+
+		const data = await client.fetch(commentsQuery, {
+			next: { revalidate: 10 },
+		});
+		setComments(data);
+	};
 	return (
 		<Layout>
 			<Head>
@@ -143,7 +155,11 @@ const Page = ({ post, comments }: Props) => {
 					</div>
 				</div>
 			</section>
-			<Comments postId={_id} comments={comments} />
+			<Comments
+				postId={_id}
+				comments={comments}
+				fetchComments={fetchComments}
+			/>
 			<section className="border-t border-gray-300 dark:border-gray-900 pt-10">
 				<ListPost posts={related} />
 			</section>
@@ -203,19 +219,10 @@ export const getStaticProps = async ({
 		}`;
 
 	const post = await client.fetch(query);
-	const postId = post._id;
-
-	const commentsQuery = `*[_type == "comment" && post._ref == '${postId}'] {
-		_id,
-		name,
-		message,
-		_createdAt
-	  }`;
-	const comments = await client.fetch(commentsQuery);
 
 	return {
-		props: { post, comments },
-		revalidate: 10,
+		props: { post },
+		revalidate: 5,
 	};
 };
 

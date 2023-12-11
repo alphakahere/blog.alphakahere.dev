@@ -81,7 +81,7 @@ function CommentForm({
 				<input
 					type="text"
 					placeholder="Votre nom"
-					className={`w-full py-2 px-3 rounded-lg border focus:outline-none
+					className={`w-full py-2 px-3 rounded-lg border border-gray-300 dark:border-gray-500 focus:outline-none
                      ${errors?.name?.message ? "border-red-500" : ""}`}
 					{...register("name")}
 				/>
@@ -89,7 +89,7 @@ function CommentForm({
 			<div className="">
 				<textarea
 					placeholder="Commentaire"
-					className={`w-full py-2 px-3 rounded-lg  min-h-[80px] max-h-[80px] border focus:outline-none ${
+					className={`w-full py-2 px-3 rounded-lg  min-h-[80px] max-h-[80px] border border-gray-300 dark:border-gray-500 focus:outline-none ${
 						errors?.message ? "border-red-500" : ""
 					}`}
 					{...register("message")}

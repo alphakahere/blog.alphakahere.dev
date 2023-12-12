@@ -3,7 +3,7 @@
 const nextConfig = {
 	reactStrictMode: true,
 	env: {
-		token: process.env.NEXT_PUBLIC_SANITY_TOKEN,
+		token: process.env.NEXT_PUBLIC_SANITY_API_TOKEN,
 	},
 	images: {
 		remotePatterns: [

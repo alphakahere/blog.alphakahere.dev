@@ -1,9 +1,9 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "../../assets/avatar.png";
 import Layout from "@/components/Layout";
 import { client, urlFor } from "../../lib/client";
-import { Post } from "@/lib/type";
+import { Comment, Post } from "@/lib/type";
 import { PortableText } from "@portabletext/react";
 import PortableSerializers from "@/components/PortableTextComponent";
 import { formatDate } from "@/lib/utils";
@@ -14,9 +14,13 @@ import ListPost from "@/components/ListPost";
 import Head from "next/head";
 import { BASE_URL, averageReadingSpeed } from "@/lib/constants";
 import { useRouter } from "next/router";
-import DisqusComments from "@/components/DisqusComments";
+import Comments from "@/components/Comments";
 
-const Page = ({ post }: { post: Post & { related: Post[] } }) => {
+type Props = {
+	post: Post & { related: Post[] };
+};
+
+const Page = ({ post }: Props) => {
 	const {
 		title,
 		mainImage,
@@ -27,11 +31,25 @@ const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 		source,
 		demo,
 		except,
-		slug,
+		_id,
 	} = post;
 	const { related } = post;
 	const router = useRouter();
 	const ogUrl = BASE_URL + router.asPath;
+	const [comments, setComments] = useState([]);
+	const fetchComments = async () => {
+		const commentsQuery = `*[_type == "comment" && post._ref == '${post._id}'] | order(_createdAt desc) {
+		  _id,
+		  name,
+		  message,
+		  _createdAt
+		}`;
+
+		const data = await client.fetch(commentsQuery, {
+			next: { revalidate: 10 },
+		});
+		setComments(data);
+	};
 	return (
 		<Layout>
 			<Head>
@@ -52,7 +70,7 @@ const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 				/>
 				<meta property="og:type" content="article" />
 			</Head>
-			<div className="mb-16">
+			<section className="mb-16">
 				<div className="text-darkText dark:text-white">
 					<div className="mb-3">
 						<h1 className="text-xl lg:text-2xl 2xl:text-3xl text-center mb-2 font-semibold">
@@ -109,7 +127,7 @@ const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 							{source && (
 								<a
 									href={source}
-									className="text-white font-semibold px-5 py-2 rounded-lg transition duration-300 ease-in bg-violet-600 hover:bg-violet-700 dark:bg-blue-600 dark:hover:bg-blue-700"
+									className="button"
 									target="_blank"
 									rel="noopener noreferrer"
 								>
@@ -119,7 +137,7 @@ const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 							{demo && (
 								<a
 									href={demo}
-									className="text-white font-semibold  px-5 py-2 rounded-lg transition duration-300 ease-in bg-violet-600 hover:bg-violet-700 dark:bg-blue-600 dark:hover:bg-blue-700"
+									className="button"
 									target="_blank"
 									rel="noopener noreferrer"
 								>
@@ -136,14 +154,16 @@ const Page = ({ post }: { post: Post & { related: Post[] } }) => {
 						/>
 					</div>
 				</div>
-			</div>
-			{/* <div className="border-t text-black border-gray-300 dark:border-gray-900 py-5">
-				<DisqusComments title={title} identifier={slug.current} />
-			</div> */}
-			<div className="border-t border-gray-300 dark:border-gray-900 pt-10">
+			</section>
+			<Comments
+				postId={_id}
+				comments={comments}
+				fetchComments={fetchComments}
+			/>
+			<section className="border-t border-gray-300 dark:border-gray-900 pt-10">
 				<ListPost posts={related} />
-			</div>
-			<Toaster position="bottom-center" />
+			</section>
+			<Toaster position="top-center" />
 		</Layout>
 	);
 };
@@ -175,12 +195,34 @@ export const getStaticProps = async ({
 }: {
 	params: { slug: string };
 }) => {
-	const query = `*[_type == "post" && slug.current == '${slug}'][0]{slug,except, mainImage, title,body,publishedAt,source, demo, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / ${averageReadingSpeed} ),"related": *[_type == "post"  && slug.current != '${slug}' && isPublished == true && count(tags[@._ref in ^.^.tags[]._ref]) > 0]| order(publishedAt desc)[0..2]{slug, mainImage, title, except,publishedAt, "tags": tags[]->title,"estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ) }}`;
+	const query = `*[_type == "post" && slug.current == '${slug}'][0]{
+		_id,
+		slug,
+		except, 
+		mainImage, 
+		title,
+		body,
+		publishedAt,
+		source, 
+		demo, 
+		"tags": tags[]->title, 
+		"estimatedReadingTime": round(length(pt::text(body)) / 5 / ${averageReadingSpeed} ),
+		"related": *[_type == "post"  && slug.current != '${slug}' && isPublished == true && count(tags[@._ref in ^.^.tags[]._ref]) > 0]| order(publishedAt desc)[0..2]{
+			slug, 
+			mainImage, 
+			title, 
+			except,
+			publishedAt, 
+			"tags": tags[]->title,
+			"estimatedReadingTime": round(length(pt::text(body)) / 5 / 180 ) 
+			}
+		}`;
+
 	const post = await client.fetch(query);
 
 	return {
 		props: { post },
-		revalidate: 10,
+		revalidate: 5,
 	};
 };
 

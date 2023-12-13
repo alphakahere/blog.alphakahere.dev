@@ -50,6 +50,7 @@ const Page = ({ post }: Props) => {
 		});
 		setComments(data);
 	};
+
 	return (
 		<Layout>
 			<Head>

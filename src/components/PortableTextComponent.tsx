@@ -3,6 +3,7 @@ import React from "react";
 import CodeBlocks from "./CodeBlocks";
 import { checkIfImageUrl, checkIfLinkContainsEmbed } from "@/lib/utils";
 import Image from "next/image";
+import { urlFor } from "@/lib/client";
 
 type CodeBlock = {
 	value: { code: string; filename: string; language: string };
@@ -13,6 +14,18 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 		codeBlock: ({ value }: CodeBlock) => {
 			const { language, code } = value;
 			return <CodeBlocks language={language} code={code} />;
+		},
+		image: ({ value }) => {
+			return (
+				<Image
+					src={urlFor(value).url()}
+					width={200}
+					height={500}
+					alt={"image d'illustration"}
+					className="w-auto h-auto m-auto rounded-lg mt-3 mb-5 lg:max-h-[700px]"
+					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+				/>
+			);
 		},
 	},
 
@@ -120,7 +133,6 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 
 	listItem: {
 		bullet: ({ children }) => <li className="mb-2">{children}</li>,
-
 		checkmarks: ({ children }) => <li>✅ {children}</li>,
 	},
 };

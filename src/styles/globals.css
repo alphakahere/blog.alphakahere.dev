@@ -12,6 +12,10 @@
 	background-image: url("../assets/grid.svg");
 }
 
+ol {
+	padding-left: 1.25rem;
+}
+
 /* width */
 html::-webkit-scrollbar {
 	width: 8px;

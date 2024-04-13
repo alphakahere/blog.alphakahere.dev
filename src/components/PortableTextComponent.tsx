@@ -32,20 +32,34 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 	block: {
 		// @ts-ignore
 		h1: ({ children }) => (
-			<h1 className="text-2xl font-semibold mb-3 leading-10">
-				# {children}
+			<h1 className="text-dark dark:text-white text-2xl xl:text-3xl font-semibold mb-3 leading-10">
+				{children}
 			</h1>
 		),
 		h2: ({ children }) => (
-			<h2 className="text-xl font-semibold mb-3 mt-3 leading-10">
-				{" "}
+			<h2 className="text-dark dark:text-white  text-xl xl:text-2xl font-semibold mb-3 mt-3 leading-10">
 				{children}
 			</h2>
 		),
 		h3: ({ children }) => (
-			<h3 className="text-lg font-semibold mb-3 mt-3 leading-10">
-				# {children}
+			<h3 className="text-dark dark:text-white  text-lg xl:text-xl font-semibold mb-3 mt-3 leading-10">
+				{children}
 			</h3>
+		),
+		h4: ({ children }) => (
+			<h4 className="text-dark dark:text-white  text-base xl:text-lg font-semibold mb-3 mt-3 leading-10">
+				{children}
+			</h4>
+		),
+		h5: ({ children }) => (
+			<h5 className="text-dark dark:text-white  text-base xl:text-lg font-semibold mb-3 mt-3 leading-10">
+				{children}
+			</h5>
+		),
+		h6: ({ children }) => (
+			<h6 className="text-dark dark:text-white  text-base xl:text-lg font-medium mb-3 mt-3 leading-10">
+				#### {children}
+			</h6>
 		),
 		normal: ({ children }) => (
 			<p className="text-justify mb-3">{children}</p>
@@ -68,7 +82,7 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 			<strong className="font-bold">{children}</strong>
 		),
 		highlight: ({ children }) => (
-			<span className="border border-blue-200 bg-blue-100 rounded text-dark p-4 mb-5 block">
+			<span className="border border-blue-200 bg-blue-50 rounded text-dark p-4 mb-5 block">
 				<span>💡</span>
 				{children}
 			</span>
@@ -126,14 +140,14 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 		bullet: ({ children }) => (
 			<ul className="list-disc mb-4 pl-5">{children}</ul>
 		),
-		number: ({ children }) => (
-			<ol className="list-decimal mb-4 pl-5">{children}</ol>
-		),
 	},
 
 	listItem: {
 		bullet: ({ children }) => <li className="mb-2">{children}</li>,
 		checkmarks: ({ children }) => <li>✅ {children}</li>,
+		number: ({ children }) => (
+			<li className="list-decimal">{children}</li>
+		),
 	},
 };
 

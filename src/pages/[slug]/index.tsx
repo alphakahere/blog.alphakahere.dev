@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Avatar from "../../assets/avatar.png";
 import Layout from "@/components/Layout";
 import { client, urlFor } from "../../lib/client";
-import { Comment, Post } from "@/lib/type";
+import { Post } from "@/lib/type";
 import { PortableText } from "@portabletext/react";
 import PortableSerializers from "@/components/PortableTextComponent";
 import { formatDate } from "@/lib/utils";
@@ -50,6 +50,23 @@ const Page = ({ post }: Props) => {
 		});
 		setComments(data);
 	};
+
+	if (router.isFallback) {
+		return (
+			<Layout>
+				<div className="h-full w-full min-h-[50vh] flex justify-center items-center">
+					<div
+						className="block h-8 w-8  2xl:h-14 2xl:w-14 animate-spin rounded-full border-4 border-solid border-current border-e-transparent text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+						role="status"
+					>
+						{/* <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+					Loading...
+				</span> */}
+					</div>
+				</div>
+			</Layout>
+		);
+	}
 
 	return (
 		<Layout>
@@ -170,7 +187,7 @@ const Page = ({ post }: Props) => {
 };
 
 export const getStaticPaths = async () => {
-	const query = `*[_type == "post"] {
+	const query = `*[_type == "post" && isPublished == true] {
 	  slug {
 		current
 	  }

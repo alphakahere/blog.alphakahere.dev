@@ -12,16 +12,13 @@ const About = () => {
 							&#128075; Hi, Je suis Alpha Amadou
 							Diallo
 						</h3>
-						<h1 className="leading-10 font-bold text-2xl md:text-4xl xl:text-5xl">
+						<h1 className="leading-10 font-bold text-2xl md:text-3xl xl:text-4xl">
 							<strong className="text-violet-600 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-r dark:from-blue-500 dark:to-cyan-500">
-								Développeur web à Volkeno
+								Développeur web | JavaScript,
+								TypeScript et PHP
 							</strong>{" "}
 						</h1>
 						<div className="text-base font-normal leading-7 lg:text-lg lg:leading-8">
-							<p className="text-darkText dark:text-gray-100 mb-2">
-								Passionné de code, de design, de
-								partage et également de nocode.
-							</p>
 							<p className="text-darkText dark:text-gray-100">
 								{data.about}
 							</p>

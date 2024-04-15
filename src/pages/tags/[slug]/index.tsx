@@ -22,12 +22,12 @@ const page = ({ posts, slug }: { posts: Post[]; slug: string }) => {
 };
 
 export const getStaticPaths = async () => {
-	const query = `*[_type == "post"] {
-	  slug {
-		current
+	const query = `*[_type == "post" && isPublished == true] {
+		slug {
+		  current
+		}
 	  }
-	}
-	`;
+	  `;
 
 	const posts = await client.fetch(query);
 

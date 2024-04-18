@@ -73,8 +73,8 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 
 	marks: {
 		code: ({ children }: { children: any }) => (
-			<pre className="bg-zinc-700 p-3 rounded">
-				<code>{children}</code>
+			<pre className="bg-zinc-800 py-[2px] px-2 rounded inline-block mx-2">
+				<code className="text-white">{children}</code>
 			</pre>
 		),
 		em: ({ children }) => <em className="italic">{children}</em>,

@@ -1,6 +1,7 @@
 import React from "react";
 import SocialConnect from "./SocialConnect";
 import { BsFillHeartFill } from "react-icons/bs";
+import Link from "next/link";
 
 const Footer = () => {
 	const currentYear = new Date().getFullYear();
@@ -13,12 +14,12 @@ const Footer = () => {
 					<p>Développé avec passion</p>
 					<BsFillHeartFill className="inline-block text-pink-600" />{" "}
 					par
-					<a
-						href=""
+					<Link
+						href="https://www.alphakahere.dev/fr"
 						className="hover:underline underline-offset-4"
 					>
 						alphakahere
-					</a>
+					</Link>
 				</div>
 			</div>
 		</footer>

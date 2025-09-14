@@ -5,9 +5,8 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				dark: "#000",
-				darkText: "#2B2C34",
-				cGray: "#ced2d9",
+				"slate-50": "oklch(98.4% 0.003 247.858)",
+				"slate-900": "oklch(12.9% 0.042 264.695)",
 			},
 		},
 	},

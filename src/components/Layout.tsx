@@ -5,7 +5,6 @@ import { Lato } from "next/font/google";
 import Header from "./Header";
 import Footer from "./Footer";
 import Head from "next/head";
-import { data } from "../../data";
 
 const lato = Lato({ subsets: ["latin"], weight: ["100", "300", "400", "700", "900"] });
 
@@ -17,7 +16,7 @@ const Layout = ({ children }: Props): JSX.Element => (
 	<>
 		<Head>
 			<title>Blog alphakahere.dev</title>
-			<meta name="description" content={data.about} />
+			<meta name="description" content="Blog d'un développeur web passionné, ici je partage mes expériences, astuces, tutoriels, articles et également des projets sur le développement web en général" />
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
 			<link rel="icon" href="/favicon.png" />
 		</Head>

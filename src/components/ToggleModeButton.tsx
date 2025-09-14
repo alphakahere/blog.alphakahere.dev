@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useTheme } from "next-themes";
-import { BsMoonFill, BsSun } from "react-icons/bs";
+import { Moon, Sun } from "lucide-react";
 
 const ToggleModeButton = () => {
 	const { systemTheme, theme, setTheme } = useTheme();
@@ -11,12 +11,12 @@ const ToggleModeButton = () => {
 			onClick={() =>
 				theme == "dark" ? setTheme("light") : setTheme("dark")
 			}
-			className="text-black text-opacity-60  dark:"
+			className="bg-slate-200 dark:bg-slate-800 rounded-full p-3 transition-all ease-in duration-300"
 		>
 			{currentTheme === "dark" ? (
-				<BsSun fontSize={24} className="text-gray-100" />
+				<Sun className="text-yellow-400" size={24} />
 			) : (
-				<BsMoonFill fontSize={24} className="text-dark" />
+					<Moon className="text-slate-900" size={24} />
 			)}
 		</button>
 	);

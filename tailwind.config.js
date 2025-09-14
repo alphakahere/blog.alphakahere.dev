@@ -6,6 +6,7 @@ module.exports = {
 		extend: {
 			colors: {
 				"slate-50": "oklch(98.4% 0.003 247.858)",
+				"slate-800": "oklch(21% 0.034 264.665)",
 				"slate-900": "oklch(12.9% 0.042 264.695)",
 			},
 		},

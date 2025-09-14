@@ -20,7 +20,7 @@ const Layout = ({ children }: Props): JSX.Element => (
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
 			<link rel="icon" href="/favicon.png" />
 		</Head>
-		<div className={`bg-white dark:bg-dark ${lato.className}`}>
+		<div className={`bg-white dark:bg-slate-900 ${lato.className}`}>
 			<Header />
 			<main className="overflow-x-hidden app-container  min-h-[86vh] py-14">
 				{children}

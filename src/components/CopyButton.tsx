@@ -1,6 +1,5 @@
+import { ClipboardCheck, Clipboard } from "lucide-react";
 import React, { useState } from "react";
-import { FaClipboard } from "react-icons/fa";
-import { GiCheckMark } from "react-icons/gi";
 
 const CopyButton = ({ codeToCopy }: { codeToCopy: string }) => {
 	const [isCopied, setIsCopied] = useState(false);
@@ -20,7 +19,7 @@ const CopyButton = ({ codeToCopy }: { codeToCopy: string }) => {
 			title={isCopied ? "Copié" : "Copier"}
 			className="text-white"
 		>
-			{isCopied ? <GiCheckMark className="text-green-500" /> : <FaClipboard />}
+			{isCopied ? <ClipboardCheck className="text-green-500" /> : <Clipboard />}
 		</button>
 	);
 };

@@ -32,32 +32,32 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 	block: {
 		// @ts-ignore
 		h1: ({ children }) => (
-			<h1 className="text-dark dark:text-white text-2xl xl:text-3xl font-semibold mb-3 leading-10">
+			<h1 className="text-slate-900 dark:text-white text-2xl xl:text-3xl font-semibold mb-3 leading-10">
 				{children}
 			</h1>
 		),
 		h2: ({ children }) => (
-			<h2 className="text-dark dark:text-white  text-xl xl:text-2xl font-semibold mb-3 mt-3 leading-10">
+			<h2 className="text-slate-900 dark:text-white  text-xl xl:text-2xl font-semibold mb-3 mt-3 leading-10">
 				{children}
 			</h2>
 		),
 		h3: ({ children }) => (
-			<h3 className="text-dark dark:text-white  text-lg xl:text-xl font-semibold mb-3 mt-3 leading-10">
+			<h3 className="text-slate-900 dark:text-white  text-lg xl:text-xl font-semibold mb-3 mt-3 leading-10">
 				{children}
 			</h3>
 		),
 		h4: ({ children }) => (
-			<h4 className="text-dark dark:text-white  text-base xl:text-lg font-semibold mb-3 mt-3 leading-10">
+			<h4 className="text-slate-900 dark:text-white  text-base xl:text-lg font-semibold mb-3 mt-3 leading-10">
 				{children}
 			</h4>
 		),
 		h5: ({ children }) => (
-			<h5 className="text-dark dark:text-white  text-base xl:text-lg font-semibold mb-3 mt-3 leading-10">
+			<h5 className="text-slate-900 dark:text-white  text-base xl:text-lg font-semibold mb-3 mt-3 leading-10">
 				{children}
 			</h5>
 		),
 		h6: ({ children }) => (
-			<h6 className="text-dark dark:text-white  text-base xl:text-lg font-medium mb-3 mt-3 leading-10">
+			<h6 className="text-slate-900 dark:text-white  text-base xl:text-lg font-medium mb-3 mt-3 leading-10">
 				#### {children}
 			</h6>
 		),
@@ -73,7 +73,7 @@ const PortableSerializers: Partial<PortableTextComponents> = {
 
 	marks: {
 		code: ({ children }: { children: any }) => (
-			<pre className="bg-zinc-800 py-[2px] px-2 rounded inline-block mx-2">
+			<pre className="bg-slate-800 py-[1px] px-2 rounded inline-block mx-2 mb-1">
 				<code className="text-white">{children}</code>
 			</pre>
 		),

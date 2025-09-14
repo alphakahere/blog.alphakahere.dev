@@ -58,11 +58,7 @@ const Page = ({ post }: Props) => {
 					<div
 						className="block h-8 w-8  2xl:h-14 2xl:w-14 animate-spin rounded-full border-4 border-solid border-current border-e-transparent text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
 						role="status"
-					>
-						{/* <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-					Loading...
-				</span> */}
-					</div>
+					/>
 				</div>
 			</Layout>
 		);
@@ -88,7 +84,7 @@ const Page = ({ post }: Props) => {
 				/>
 				<meta property="og:type" content="article" />
 			</Head>
-			<section className="mb-16">
+			<section className="mb-16  mt-16">
 				<div className="text-darkText dark:text-white">
 					<div className="mb-3">
 						<h1 className="text-xl lg:text-2xl 2xl:text-3xl text-center mb-2 font-semibold">
@@ -108,7 +104,7 @@ const Page = ({ post }: Props) => {
 					</div>
 					<div className="flex items-center justify-between mb-3">
 						<div className="flex items-center space-x-3">
-							<div className="w-14 h-14 bg-gradient-to-tr from-sky-300 via-fuchsia-500 to-purple-500 dark:from-sky-300 dark:via-blue-500 dark:to-cyan-400 rounded-full">
+							<div className="w-14 h-14 bg-gradient-to-tr from-sky-300 via-blue-500 to-cyan-400 rounded-full">
 								<Image
 									src={Avatar}
 									alt="avatar"
@@ -133,6 +129,7 @@ const Page = ({ post }: Props) => {
 						</div>
 					</div>
 					<div className="mb-8">
+						<div className="border border-slate-100 dark:border-slate-800 rounded-lg">
 						<Image
 							className="rounded-lg w-full lg:max-h-[60vh] object-cover mb-4"
 							src={urlFor(mainImage).url()}
@@ -141,6 +138,7 @@ const Page = ({ post }: Props) => {
 							height={500}
 							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 33vw"
 						/>
+						</div>
 						<div className="flex items-center justify-center mb-3 gap-3">
 							{source && (
 								<a
@@ -165,7 +163,7 @@ const Page = ({ post }: Props) => {
 						</div>
 					</div>
 
-					<div className="text-lg leading-8 mb-2 font-normal text-darkText dark:text-cGray">
+					<div className="text-lg leading-8 mb-2 font-normal text-slate-600 dark:text-slate-300">
 						<PortableText
 							value={body}
 							components={PortableSerializers}
@@ -178,7 +176,7 @@ const Page = ({ post }: Props) => {
 				comments={comments}
 				fetchComments={fetchComments}
 			/>
-			<section className="border-t border-gray-300 dark:border-gray-900 pt-10">
+			<section className="border-t border-slate-100 dark:border-slate-800 pt-10">
 				<ListPost posts={related} />
 			</section>
 			<Toaster position="top-center" />

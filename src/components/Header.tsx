@@ -14,7 +14,7 @@ const Header = () => {
 		);
 	}
 	return (
-		<header className="text-white bg-gray-100 dark:bg-dark border-b border-gray-300 dark:border-gray-900">
+		<header className="bg-slate-50 dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 fixed top-0 left-0 right-0 z-50">
 			<Navbar />
 		</header>
 	);

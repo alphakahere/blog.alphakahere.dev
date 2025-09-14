@@ -81,25 +81,24 @@ function CommentForm({
 				<input
 					type="text"
 					placeholder="Votre nom"
-					className={`w-full py-2 px-3 rounded-lg border border-gray-300 dark:border-gray-500 focus:outline-none
-                     ${errors?.name?.message ? "border-red-500" : ""}`}
+					className={`w-full py-2 px-3 rounded-lg border border-slate-300 dark:border-slate-700 focus:outline-none dark:bg-slate-800 dark:text-white ${errors?.name?.message ? "border-red-500" : ""}`}
 					{...register("name")}
 				/>
 			</div>
-			<div className="">
+			<div className="mb-5">
 				<textarea
 					placeholder="Commentaire"
-					className={`w-full py-2 px-3 rounded-lg  min-h-[80px] max-h-[80px] border border-gray-300 dark:border-gray-500 focus:outline-none ${
+					className={`w-full py-2 px-3 rounded-lg  min-h-[80px] max-h-[80px] border border-slate-300 dark:border-slate-700 focus:outline-none dark:bg-slate-800 dark:text-white ${
 						errors?.message ? "border-red-500" : ""
 					}`}
 					{...register("message")}
 				/>
 			</div>
 			<div className="mb-5">
-				<label htmlFor="remember_me">
+				<label htmlFor="remember_me" className="flex items-center gap-2">
 					<input
 						type="checkbox"
-						className={`mr-2`}
+						className={`mr-2 dark:bg-slate-800 dark:text-white w-5 h-5`}
 						id="remember_me"
 						{...register("remember_me")}
 					/>
@@ -129,22 +128,22 @@ const Comments = (props: {
 		fetchComments();
 	}, []);
 	return (
-		<section className="dark:border-gray-900 pt-8 mb-10 bg-gray-100 dark:bg-zinc-800 p-3 rounded-lg">
+		<section className="dark:border-slate-900 pt-8 mb-10 bg-slate-100 dark:bg-slate-800 p-3 rounded-lg">
 			<h3 className="text-2xl mb-3 font-medium">Commentaires</h3>
 			<CommentForm postId={postId} fetchComments={fetchComments} />
-			<div className="">
+			<div className="border-t dark:border-slate-700 border-slate-300 pt-5 mt-5">
 				{comments.map((item) => (
 					<div key={item._id} className="mb-3">
 						<div className="flex items-center gap-2">
 							<h5 className="text-blue-500 font-medium text-base">
 								{item.name}
 							</h5>
-							<p className="text-gray-600 dark:text-gray-300 text-sm">
+							<p className="text-slate-600 dark:text-slate-300 text-sm">
 								le{" "}
 								{formatDate(item?._createdAt)}
 							</p>
 						</div>
-						<p className="pl-1 text-gray-600  dark:text-gray-300">
+						<p className="pl-1 text-slate-600  dark:text-slate-300">
 							{item.message}
 						</p>
 					</div>

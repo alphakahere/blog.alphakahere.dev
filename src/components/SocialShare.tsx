@@ -9,7 +9,7 @@ import {
 import { useRouter } from "next/router";
 import { BASE_URL } from "@/lib/constants";
 import toast from "react-hot-toast";
-import { Link } from "lucide-react";
+import { Link, Share2 } from "lucide-react";
 
 const SocialShare = ({ title }: { title: string }) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -51,15 +51,15 @@ const SocialShare = ({ title }: { title: string }) => {
 	return (
 		<>
 			<button className="flex items-center gap-1" onClick={toggle}>
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook-icon lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg> Partager
+				<Share2 size={20} /> Partager
 			</button>
 			{isOpen && (
 				<div
-					className="absolute top-6 right-0 transition-all rounded bg-gray-200 text-darkText dark:bg-zinc-800 text-sm dark:text-white w-60"
+					className="absolute top-6 right-0 transition-all rounded-lg bg-slate-100 shadow-xl text-slate-600 dark:bg-slate-800 dark:text-slate-300 text-sm w-60"
 					ref={ref}
 				>
 					<button
-						className="flex gap-2 items-center text-sm mb-3 border-b border-gray-300 w-full p-3"
+						className="flex gap-2 items-center text-sm mb-3 border-b border-slate-200 dark:border-slate-700 w-full p-3"
 						onClick={onCopy}
 					>
 						<Link />

@@ -11,7 +11,7 @@ const Navbar = () => {
 				<div>
 					<Link
 						href="/"
-						className="text-darkText dark:text-white text-xl leading-8 font-medium md:text-2xl xl:text-3xl"
+						className="text-slate dark:text-white text-xl leading-8 font-medium md:text-2xl xl:text-3xl"
 						data-theme={theme}
 					>
 						alphakahere.blog

@@ -85,7 +85,7 @@ const Page = ({ post }: Props) => {
 				<meta property="og:type" content="article" />
 			</Head>
 			<section className="mb-16  mt-16">
-				<div className="text-darkText dark:text-white">
+				<div className="text-slate-600 dark:text-white">
 					<div className="mb-3">
 						<h1 className="text-xl lg:text-2xl 2xl:text-3xl text-center mb-2 font-semibold">
 							{title}

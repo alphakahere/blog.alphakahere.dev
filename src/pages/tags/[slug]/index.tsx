@@ -12,7 +12,7 @@ const page = ({ posts, slug }: { posts: Post[]; slug: string }) => {
 			<Head>
 				<title>{`Liste des tutoriels ${slug}`}</title>
 			</Head>
-			<h1 className="text-darkText dark:text-white text-xl leading-7 font-bold lg:text-2xl lg:leading-10 mb-5">
+			<h1 className="text-slate-600 dark:text-white text-xl leading-7 font-bold lg:text-2xl lg:leading-10 mb-5">
 				Liste des tutoriels pour{" "}
 				<span className="uppercase text-blue-500">{slug}</span>
 			</h1>

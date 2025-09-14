@@ -4,7 +4,7 @@ import React from "react";
 
 const Page404 = () => (
 	<Layout>
-		<div className="flex flex-col items-center justify-center min-h-[60vh] space-y-5 text-darkText  dark:text-white">
+		<div className="flex flex-col items-center justify-center min-h-[60vh] space-y-5 text-slate-600 dark:text-white">
 			<h3 className="font-bold  text-2xl leading-10">Oups!</h3>
 			<h1 className="text-9xl font-extrabold">
 				4<span className="text-blue-500">0</span>4
